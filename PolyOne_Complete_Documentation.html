@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PolyOne Bot - Complete Documentation</title>
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+            body {
+                font-size: 11pt;
+            }
+            h1 {
+                page-break-after: avoid;
+            }
+            h2, h3 {
+                page-break-after: avoid;
+            }
+            pre {
+                page-break-inside: avoid;
+            }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #95a5a6;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        
+        h4 {
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+            padding-left: 15px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 30px 0;
+        }
+        
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<p># PolyOne Bot - Complete Documentation</p><p><br>
+<strong>Version:</strong> 1.3.0  </p><p><strong>Generated:</strong> 2025-12-04 10:00:44</p><p><br>
+---</p><p><br>
+<h1>Table of Contents</h1></p><p><br>
+<li><a href="#quick-start-guide">Quick Start Guide</a></li><br>
+<li><a href="#environment-variables-reference">Environment Variables Reference</a></li><br>
+<li><a href="#commands-reference">Commands Reference</a></li><br>
+<li><a href="#use-case-examples">Use Case Examples</a></li><br>
+<li><a href="#deployment-guide">Deployment Guide</a></li><br>
+<li><a href="#changelog">Changelog</a></li></p><p><br>
+---</p><p><br>
+<a name='quick-start-guide'></a></p><p><br>
+<h1>Quick Start Guide</h1></p><p><br>
+<h1>PolyOne Bot - Quick Start Guide</h1></p><p><h2>Overview</h2></p><p>PolyOne is a Discord bot for the Polymer University community that tracks metrics, manages XP, grades tweets, runs quizzes, and more. This guide will help you get the bot up and running quickly.</p><p><h2>Prerequisites</h2></p><p><li>Python 3.8 or higher</li><br>
+<li>A Discord bot application (get token from <a href="https://discord.com/developers/applications">Discord Developer Portal</a>)</li><br>
+<li>A Google Cloud service account with access to Google Sheets</li><br>
+<li>(Optional) Twitter/X API Bearer Token for tweet grading</li><br>
+<li>(Optional) OpenAI API Key for automatic tweet grading</li></p><p><h2>Quick Start</h2></p><p><h3>1. Install Dependencies</h3></p><p><pre><code>pip install -r requirements.txt<br>
+</code></pre></p><p><h3>2. Set Up Environment Variables</h3></p><p>Copy <code>env.example.txt</code> to <code>.env</code> and fill in your values:</p><p><pre><code>cp env.example.txt .env<br>
+</code></pre></p><p><strong>Required variables:</strong><br>
+<li><code>DISCORD_TOKEN</code> - Your Discord bot token</li><br>
+<li><code>GOOGLE_SERVICE_ACCOUNT_FILE</code> - Path to your Google service account JSON file</li><br>
+<li><code>GOOGLE_SPREADSHEET_NAME</code> - Name of your Google Spreadsheet</li></p><p><strong>Recommended variables:</strong><br>
+<li><code>METRICS_CHANNEL_ID</code> - Discord channel ID for metrics announcements</li><br>
+<li><code>TWITTER_BEARER_TOKEN</code> - For tweet text fetching</li><br>
+<li><code>OPENAI_API_KEY</code> - For automatic tweet grading</li></p><p>See <code>ENV_VARIABLES.md</code> for a complete list of all configuration options.</p><p><h3>3. Set Up Google Sheets</h3></p><p><li>Create a Google Spreadsheet with the name specified in <code>GOOGLE_SPREADSHEET_NAME</code></li><br>
+<li>Create the following worksheets (they will be created automatically if missing):</li><br>
+   - <code>xp_events</code> - Tracks XP events<br>
+   - <code>xp_totals</code> - Stores user XP totals<br>
+   - <code>tweets</code> - Stores tweet submissions<br>
+   - <code>predictions</code> - Stores prediction game entries<br>
+   - <code>leaderboard</code> - (Optional) Leaderboard data</p><p><li>Share the spreadsheet with your Google service account email (found in <code>service_account.json</code>)</li></p><p><h3>4. Configure Admin Role</h3></p><p>The admin role is configurable via environment variable or bot command:</p><p><strong>Via Environment Variable:</strong><br>
+<pre><code>ADMIN_ROLE_NAME=manager perms<br>
+</code></pre></p><p><strong>Via Bot Command (after bot is running):</strong><br>
+Use <code>/bot_setup</code> command to set the admin role name. Users with this role (or Discord administrators) can use admin commands.</p><p><h3>5. Run the Bot</h3></p><p><pre><code>python PolyOne.py<br>
+</code></pre></p><p>The bot will:<br>
+<li>Validate configuration on startup</li><br>
+<li>Log to console and <code>logs/polyone.log</code></li><br>
+<li>Connect to Discord and sync commands</li><br>
+<li>Start background tasks for metrics checking, quizzes, etc.</li></p><p><h2>First-Time Setup Checklist</h2></p><p><li>[ ] Installed Python dependencies</li><br>
+<li>[ ] Created <code>.env</code> file with required variables</li><br>
+<li>[ ] Set <code>DISCORD_TOKEN</code> in <code>.env</code></li><br>
+<li>[ ] Set <code>GOOGLE_SERVICE_ACCOUNT_FILE</code> path</li><br>
+<li>[ ] Set <code>GOOGLE_SPREADSHEET_NAME</code></li><br>
+<li>[ ] Created Google Spreadsheet and shared with service account</li><br>
+<li>[ ] Set <code>METRICS_CHANNEL_ID</code> (Discord channel for announcements)</li><br>
+<li>[ ] (Optional) Set <code>TWITTER_BEARER_TOKEN</code> for tweet grading</li><br>
+<li>[ ] (Optional) Set <code>OPENAI_API_KEY</code> for automatic grading</li><br>
+<li>[ ] (Optional) Set <code>ADMIN_ROLE_NAME</code> or configure via <code>/bot_setup</code></li><br>
+<li>[ ] Invited bot to Discord server with necessary permissions</li></p><p><h2>Bot Permissions</h2></p><p>The bot needs the following Discord permissions:<br>
+<li><strong>Send Messages</strong> - To post announcements and respond to commands</li><br>
+<li><strong>Embed Links</strong> - To send rich embeds</li><br>
+<li><strong>Read Message History</strong> - To read previous messages</li><br>
+<li><strong>Manage Messages</strong> - (Optional) For message cleanup</li><br>
+<li><strong>Manage Roles</strong> - (Optional) For role assignment in quizzes</li><br>
+<li><strong>Connect</strong> - (Optional) For voice channel volume counter</li></p><p><h2>Configuration Validation</h2></p><p>The bot validates configuration on startup. If there are errors, the bot will not start and will display what needs to be fixed. Warnings are logged but won't prevent startup.</p><p><strong>Common Issues:</strong><br>
+<li>Missing <code>DISCORD_TOKEN</code> - Bot cannot connect to Discord</li><br>
+<li>Missing Google service account file - Cannot access Google Sheets</li><br>
+<li>Invalid channel IDs - Features using those channels will be disabled</li><br>
+<li>Missing API keys - Related features (tweet grading) will be disabled</li></p><p><h2>Logging</h2></p><p>Logs are written to:<br>
+<li>Console (INFO level and above)</li><br>
+<li><code>logs/polyone.log</code> (all levels)</li><br>
+<li><code>logs/polyone_errors.log</code> (ERROR level and above)</li></p><p>Log files rotate automatically when they reach the configured size limit.</p><p><h2>Next Steps</h2></p><p>After the bot is running:</p><p><li><strong>Configure channels</strong> - Use <code>/bot_setup</code> to set up channels</li><br>
+<li><strong>Set admin role</strong> - Use <code>/bot_setup</code> to configure admin role name</li><br>
+<li><strong>Test commands</strong> - Try <code>/submit_tweet</code> or <code>/xp_history</code> to test functionality</li><br>
+<li><strong>Check logs</strong> - Monitor <code>logs/polyone.log</code> for any issues</li></p><p><h2>Troubleshooting</h2></p><p><h3>Bot Won't Start</h3></p><p><strong>Configuration Validation Errors:</strong><br>
+<li><strong>"DISCORD_TOKEN is not set"</strong></li><br>
+  - Solution: Add <code>DISCORD_TOKEN=your_token_here</code> to your <code>.env</code> file<br>
+  - Get token from: https://discord.com/developers/applications</p><p><li><strong>"Google service account file not found"</strong></li><br>
+  - Solution: Verify the path in <code>GOOGLE_SERVICE_ACCOUNT_FILE</code> is correct<br>
+  - Ensure the file exists and is readable<br>
+  - Check file permissions</p><p><li><strong>"METRICS_CHANNEL_ID is using default value"</strong></li><br>
+  - This is a warning, not an error<br>
+  - Solution: Set <code>METRICS_CHANNEL_ID</code> in <code>.env</code> to your desired channel ID<br>
+  - Get channel ID: Right-click channel → Copy ID (Developer Mode must be enabled)</p><p><strong>Startup Crashes:</strong><br>
+<li>Check <code>logs/polyone_errors.log</code> for detailed error messages</li><br>
+<li>Verify Python version: <code>python --version</code> (requires 3.8+)</li><br>
+<li>Ensure all dependencies are installed: <code>pip install -r requirements.txt</code></li><br>
+<li>Check for syntax errors: <code>python -m py_compile PolyOne.py</code></li></p><p><h3>Bot Starts But Commands Don't Work</h3></p><p><strong>Commands Not Appearing:</strong><br>
+<li>Wait 1-2 minutes after bot starts for command sync</li><br>
+<li>Check bot has "Use Application Commands" permission</li><br>
+<li>Verify bot is in the server (not just invited)</li><br>
+<li>Try restarting the bot to force command sync</li></p><p><strong>Permission Errors:</strong><br>
+<li>Ensure bot has required permissions in server settings</li><br>
+<li>Check bot's role is high enough in role hierarchy</li><br>
+<li>Verify admin role name matches your server's role name</li><br>
+<li>Use <code>/bot_setup</code> to configure admin role if needed</li></p><p><strong>Channel Not Found Errors:</strong><br>
+<li>Verify channel IDs are correct (use Developer Mode to copy IDs)</li><br>
+<li>Ensure bot can see the channel (check channel permissions)</li><br>
+<li>Use <code>/bot_setup</code> to reconfigure channels</li></p><p><h3>Tweet Grading Not Working</h3></p><p><strong>"TWITTER_BEARER_TOKEN not set"</strong><br>
+<li>Solution: Add <code>TWITTER_BEARER_TOKEN=your_token</code> to <code>.env</code></li><br>
+<li>Get token from: https://developer.twitter.com/en/portal/dashboard</li><br>
+<li>Note: Tweets will still be submitted but won't be automatically graded</li></p><p><strong>"OPENAI_API_KEY not set"</strong><br>
+<li>Solution: Add <code>OPENAI_API_KEY=your_key</code> to <code>.env</code></li><br>
+<li>Get key from: https://platform.openai.com/api-keys</li><br>
+<li>Note: Tweets will be saved but require manual grading</li></p><p><strong>API Errors:</strong><br>
+<li><strong>"OpenAI quota exceeded"</strong>: Wait for quota reset or upgrade plan</li><br>
+<li><strong>"OpenAI rate limit exceeded"</strong>: Wait a few moments and try again</li><br>
+<li><strong>"Non-200 from X API"</strong>: Check Twitter API status, verify bearer token is valid</li><br>
+<li>Check API keys are active and have necessary permissions</li></p><p><strong>Tweets Not Being Graded:</strong><br>
+<li>Use <code>/process_ungraded_tweets</code> (admin) to manually process ungraded tweets</li><br>
+<li>Check logs for specific error messages</li><br>
+<li>Verify tweet URLs are valid and accessible</li></p><p><h3>Google Sheets Errors</h3></p><p><strong>"Worksheet not found"</strong><br>
+<li>Solution: Worksheets are created automatically on first use</li><br>
+<li>Verify spreadsheet name matches <code>GOOGLE_SPREADSHEET_NAME</code></li><br>
+<li>Check service account has edit access to the spreadsheet</li></p><p><strong>"Permission denied" or "Access denied"</strong><br>
+<li>Solution: Share spreadsheet with service account email</li><br>
+<li>Find service account email in <code>service_account.json</code> (look for "client_email")</li><br>
+<li>Grant "Editor" access to the service account</li></p><p><strong>"Rate limit exceeded"</strong><br>
+<li>The bot includes automatic rate limiting</li><br>
+<li>If errors persist, increase <code>SHEETS_API_MIN_INTERVAL</code> in code</li><br>
+<li>Reduce frequency of operations that write to sheets</li></p><p><strong>Data Not Appearing:</strong><br>
+<li>Check worksheet names match configuration</li><br>
+<li>Verify formulas in <code>xp_totals</code> sheet are working</li><br>
+<li>Use <code>/xp_me</code> to test if data is being read correctly</li></p><p><h3>XP System Issues</h3></p><p><strong>XP Not Updating:</strong><br>
+<li>Check daily cap hasn't been reached: <code>/xp_daily_status</code></li><br>
+<li>Verify XP source is valid (tweet grading, quiz, etc.)</li><br>
+<li>Check <code>xp_events</code> sheet for new entries</li><br>
+<li>Verify <code>xp_totals</code> formulas are calculating correctly</li></p><p><strong>Leaderboard Not Showing:</strong><br>
+<li>Ensure <code>xp_totals</code> sheet has data</li><br>
+<li>Check formulas are working (should auto-sum from <code>xp_events</code>)</li><br>
+<li>Try <code>/xp_leaderboard</code> to test</li></p><p><strong>Daily Cap Issues:</strong><br>
+<li>Check your tier: <code>/xp_daily_status</code></li><br>
+<li>Daily caps reset at midnight UTC</li><br>
+<li>Admin grants bypass daily caps</li></p><p><h3>Quiz Issues</h3></p><p><strong>Quiz Not Starting:</strong><br>
+<li>Check bot has permission to send DMs</li><br>
+<li>Verify user has DMs enabled from server members</li><br>
+<li>Check rate limiting (wait 30 seconds between attempts)</li></p><p><strong>Role Not Assigned:</strong><br>
+<li>Verify bot has "Manage Roles" permission</li><br>
+<li>Check bot's role is higher than the role being assigned</li><br>
+<li>Ensure role hierarchy is correct in server settings</li></p><p><strong>Quiz Questions Not Generating:</strong><br>
+<li>Check <code>OPENAI_API_KEY</code> is set and valid</li><br>
+<li>Verify API quota hasn't been exceeded</li><br>
+<li>Check logs for specific error messages</li></p><p><h3>Prediction Game Issues</h3></p><p><strong>Prediction Not Submitting:</strong><br>
+<li>Check deadline (must submit at least 1 hour before resolution)</li><br>
+<li>Verify you haven't already submitted for that date</li><br>
+<li>Check rate limiting (10 second cooldown)</li></p><p><strong>Predictions Not Resolving:</strong><br>
+<li>Verify <code>PREDICTION_RESOLUTION_HOUR</code> is set correctly (default: 23:00 UTC)</li><br>
+<li>Check component is enabled: <code>/bot_component_status</code></li><br>
+<li>Ensure bot has access to analytics API</li></p><p><h3>General Issues</h3></p><p><strong>High Memory Usage:</strong><br>
+<li>Check log file sizes (rotate if needed)</li><br>
+<li>Review state.json size (should be small)</li><br>
+<li>Restart bot periodically if running 24/7</li></p><p><strong>Bot Disconnects Frequently:</strong><br>
+<li>Check internet connection stability</li><br>
+<li>Verify Discord API status</li><br>
+<li>Check for rate limiting from Discord</li><br>
+<li>Review error logs for connection issues</li></p><p><strong>Commands Timeout:</strong><br>
+<li>Check Google Sheets API response times</li><br>
+<li>Verify network connectivity</li><br>
+<li>Increase timeout values if needed (in code)</li></p><p><h3>Getting Help</h3></p><p><li><strong>Check Logs First:</strong></li><br>
+   - <code>logs/polyone.log</code> - All activity<br>
+   - <code>logs/polyone_errors.log</code> - Errors only</p><p><li><strong>Use Bot Commands:</strong></li><br>
+   - <code>/bot_component_status</code> - Check which features are enabled<br>
+   - <code>/bot_setup</code> - View current configuration</p><p><li><strong>Review Documentation:</strong></li><br>
+   - See <code>polyone_docs_bundle/</code> for detailed guides<br>
+   - Check <code>ENV_VARIABLES.md</code> for configuration options</p><p><li><strong>Common Solutions:</strong></li><br>
+   - Restart the bot<br>
+   - Verify all environment variables are set<br>
+   - Check Discord and API service status<br>
+   - Review recent code changes</p><p>For more detailed information, see the other documentation files in the <code>polyone_docs_bundle/</code> directory.</p><p></p><p>---</p><p><br>
+<a name='environment-variables-reference'></a></p><p><br>
+<h1>Environment Variables Reference</h1></p><p><br>
+<h1>PolyOne Bot - Environment Variables Reference</h1></p><p>This document lists all environment variables used by the PolyOne bot.</p><p><h2>Required Variables</h2></p><p>These variables <strong>must</strong> be set for the bot to function:</p><p>| Variable | Description | Example |<br>
+|----------|-------------|---------|<br>
+| <code>DISCORD_TOKEN</code> | Discord bot token | <code>YOUR_DISCORD_BOT_TOKEN_HERE</code> |<br>
+| <code>GOOGLE_SERVICE_ACCOUNT_FILE</code> | Path to Google service account JSON file | <code>service_account.json</code> |<br>
+| <code>GOOGLE_SPREADSHEET_NAME</code> | Name of the Google Spreadsheet | <code>Polymer University Dashboard</code> |</p><p><h2>Recommended Variables</h2></p><p>These are recommended for full functionality:</p><p>| Variable | Description | Default | Notes |<br>
+|----------|-------------|---------|-------|<br>
+| <code>METRICS_CHANNEL_ID</code> | Discord channel ID for metrics announcements | <code>123456789012345678</code> | Get from Discord (right-click channel > Copy ID) |<br>
+| <code>TWITTER_BEARER_TOKEN</code> | Twitter/X API bearer token | (empty) | Required for tweet text fetching and grading |<br>
+| <code>OPENAI_API_KEY</code> | OpenAI API key | (empty) | Required for automatic tweet grading |</p><p><h2>Optional Variables</h2></p><p><h3>Feature Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>VOLUME_CHANNEL_ID</code> | Voice channel ID for volume counter | <code>0</code> (disabled) |<br>
+| <code>LEADERBOARD_URL</code> | URL for leaderboard API | <code>https://analytics.polymer.zone/api/metrics/leaderboard/top-transactions?environment=mainnet</code> |<br>
+| <code>ANALYTICS_URL</code> | URL for analytics API | <code>https://analytics.polymer.zone/api/analytics?environment=mainnet</code> |<br>
+| <code>POLL_INTERVAL</code> | Poll interval in seconds | <code>600</code> (10 minutes) |</p><p><h3>Google Sheets Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>XP_EVENTS_SHEET_NAME</code> | Name of XP events sheet | <code>xp_events</code> |<br>
+| <code>XP_TOTALS_SHEET_NAME</code> | Name of XP totals sheet | <code>xp_totals</code> |<br>
+| <code>TWEETS_SHEET_NAME</code> | Name of tweets sheet | <code>tweets</code> |<br>
+| <code>OLD_TWEETS_SHEET_NAME</code> | Name of old tweets sheet (optional) | (empty) |<br>
+| <code>LEADERBOARD_SHEET_NAME</code> | Name of leaderboard sheet | <code>leaderboard</code> |<br>
+| <code>PREDICTIONS_SHEET_NAME</code> | Name of predictions sheet | <code>predictions</code> |</p><p><h3>Twitter Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>TWITTER_HANDLES_CSV</code> | Path to Twitter handles CSV file | <code>twitter_handles.csv</code> |</p><p><h3>Quiz Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>QUIZ_DATA_FILE</code> | Path to quiz questions CSV | <code>questions.csv</code> |<br>
+| <code>QUIZ_RESULTS_FILE</code> | Path to quiz results CSV | <code>results.csv</code> |<br>
+| <code>METRICS_QUIZ_CSV</code> | Path to custom metrics quiz CSV | <code>metrics_quiz_custom.csv</code> |<br>
+| <code>MAX_QUIZ_PARTICIPANTS</code> | Maximum quiz participants | <code>50</code> |<br>
+| <code>QUIZ_COOLDOWN_SECONDS</code> | Quiz cooldown in seconds | <code>600</code> |</p><p><h3>XP System Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>GRANDFATHER_BONUS_ENABLED</code> | Enable grandfather bonus | <code>true</code> |</p><p><h3>DeFiLlama Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>DEFI_LLAMA_API_KEY</code> | DeFiLlama API key (optional) | (empty) |<br>
+| <code>CHAIN_ICON_BASE_URL</code> | Base URL for chain icons | <code>https://icons.llama.fi</code> |</p><p><h3>Logging Configuration</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>LOG_LEVEL</code> | Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL) | <code>INFO</code> |<br>
+| <code>LOG_DIR</code> | Log directory | <code>logs</code> |<br>
+| <code>LOG_FILE_MAX_BYTES</code> | Max log file size in bytes | <code>10485760</code> (10MB) |<br>
+| <code>LOG_FILE_BACKUP_COUNT</code> | Number of backup log files | <code>5</code> |</p><p><h3>Error Notifications</h3></p><p>| Variable | Description | Default |<br>
+|----------|-------------|---------|<br>
+| <code>ERROR_NOTIFICATION_ENABLED</code> | Enable error notifications via DM | <code>true</code> |<br>
+| <code>ADMIN_DM_USER_IDS</code> | Comma-separated Discord user IDs for error notifications | (empty) |</p><p><h2>Example .env File</h2></p><p><pre><code><h1>Required</h1><br>
+DISCORD_TOKEN=your_discord_bot_token_here<br>
+GOOGLE_SERVICE_ACCOUNT_FILE=service_account.json<br>
+GOOGLE_SPREADSHEET_NAME=Polymer University Dashboard</p><p><h1>Recommended</h1><br>
+METRICS_CHANNEL_ID=123456789012345678<br>
+TWITTER_BEARER_TOKEN=your_twitter_bearer_token_here<br>
+OPENAI_API_KEY=your_openai_api_key_here</p><p><h1>Optional - only set if you want to change defaults</h1><br>
+VOLUME_CHANNEL_ID=0<br>
+POLL_INTERVAL=600<br>
+LOG_LEVEL=INFO<br>
+</code></pre></p><p><h2>Notes</h2></p><p><li>All variables are optional except the three <strong>Required</strong> variables</li><br>
+<li>If a variable is not set, the bot will use the default value shown in the table</li><br>
+<li>For Discord IDs, enable Developer Mode in Discord settings, then right-click the channel/user and select "Copy ID"</li><br>
+<li>The bot will work without <code>TWITTER_BEARER_TOKEN</code> and <code>OPENAI_API_KEY</code>, but tweet grading will be disabled</li><br>
+<li>Empty strings mean the feature is disabled or uses a fallback</li></p><p></p><p></p><p>---</p><p><br>
+<a name='commands-reference'></a></p><p><br>
+<h1>Commands Reference</h1></p><p><br>
+<h1>PolyOne Bot - Commands Reference</h1></p><p>Complete reference for all slash commands available in the PolyOne bot.</p><p><h2>Table of Contents</h2></p><p><li><a href="#user-commands">User Commands</a></li><br>
+<li><a href="#admin-commands">Admin Commands</a></li><br>
+<li><a href="#command-examples">Command Examples</a></li></p><p>---</p><p><h2>User Commands</h2></p><p>Commands available to all users.</p><p><h3><code>/polymer_status</code></h3><br>
+<strong>Description:</strong> Show current Polymer dashboard stats</p><p><strong>Usage:</strong><br>
+<pre><code>/polymer_status<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Displays current Polymer network metrics</li><br>
+<li>Shows total volume, top transactions, and other analytics</li><br>
+<li>Updates in real-time from Polymer analytics API</li></p><p><strong>Example:</strong><br>
+<pre><code>/polymer_status<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_me</code></h3><br>
+<strong>Description:</strong> Show your total Polymer XP</p><p><strong>Usage:</strong><br>
+<pre><code>/xp_me<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows your total XP across all sources</li><br>
+<li>Displays your current rank</li><br>
+<li>Breaks down XP by source (Polymer University, Twitter, Quizzes, etc.)</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_me<br>
+</code></pre></p><p><strong>Output includes:</strong><br>
+<li>Total XP</li><br>
+<li>Rank (#X out of Y users)</li><br>
+<li>XP breakdown by category</li></p><p>---</p><p><h3><code>/xp_leaderboard</code></h3><br>
+<strong>Description:</strong> Show the top XP leaderboard</p><p><strong>Usage:</strong><br>
+<pre><code>/xp_leaderboard<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Displays top 25 users by XP</li><br>
+<li>Shows Discord names and total XP</li><br>
+<li>Updates in real-time</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_leaderboard<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_daily_status</code></h3><br>
+<strong>Description:</strong> Check your daily XP progress and cap</p><p><strong>Usage:</strong><br>
+<pre><code>/xp_daily_status<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows your daily XP progress</li><br>
+<li>Displays your tier and daily cap</li><br>
+<li>Shows how much XP you can still earn today</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_daily_status<br>
+</code></pre></p><p><strong>Output includes:</strong><br>
+<li>Total XP</li><br>
+<li>Current tier</li><br>
+<li>Today's progress (earned/remaining)</li><br>
+<li>Daily cap information</li></p><p>---</p><p><h3><code>/xp_history</code></h3><br>
+<strong>Description:</strong> View your XP history (recent events)</p><p><strong>Parameters:</strong><br>
+<li><code>limit</code> (optional): Number of recent events to show (default: 20, max: 50)</li><br>
+<li><code>user</code> (optional, admin only): View another user's history</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_history<br>
+/xp_history limit:10<br>
+/xp_history limit:30 user:@username<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows recent XP events with timestamps</li><br>
+<li>Displays source, amount, and notes for each event</li><br>
+<li>Admins can view other users' history</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_history limit:15<br>
+</code></pre></p><p>---</p><p><h3><code>/set_twitter</code></h3><br>
+<strong>Description:</strong> Link your Twitter/X handle to your Discord account</p><p><strong>Parameters:</strong><br>
+<li><code>handle</code>: Your Twitter/X handle (with or without @)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/set_twitter handle:yourhandle<br>
+/set_twitter handle:@yourhandle<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Links your Twitter handle to your Discord account</li><br>
+<li>Required before submitting tweets</li><br>
+<li>Handle is normalized (removes @ if present)</li></p><p><strong>Example:</strong><br>
+<pre><code>/set_twitter handle:polymer_zone<br>
+</code></pre></p><p>---</p><p><h3><code>/submit_tweet</code></h3><br>
+<strong>Description:</strong> Submit a tweet URL for the Polymer content campaign</p><p><strong>Parameters:</strong><br>
+<li><code>url</code>: Full URL of the tweet (e.g., https://twitter.com/... or https://x.com/...)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/submit_tweet url:https://twitter.com/user/status/1234567890<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Submits a tweet for grading</li><br>
+<li>Automatically fetches tweet text (if API configured)</li><br>
+<li>Automatically grades tweet (if OpenAI configured)</li><br>
+<li>Awards XP based on grade</li><br>
+<li>Rate limited: 30 seconds between submissions</li></p><p><strong>Example:</strong><br>
+<pre><code>/submit_tweet url:https://x.com/polymer_zone/status/1234567890<br>
+</code></pre></p><p><strong>Requirements:</strong><br>
+<li>Must set Twitter handle first with <code>/set_twitter</code></li><br>
+<li>Tweet must be accessible (public)</li><br>
+<li>Rate limit: 30 seconds between submissions</li></p><p>---</p><p><h3><code>/check_tweets</code></h3><br>
+<strong>Description:</strong> Check how many tweets you have submitted</p><p><strong>Usage:</strong><br>
+<pre><code>/check_tweets<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows total count of your submitted tweets</li><br>
+<li>Includes tweets from current and old sheets (if configured)</li></p><p><strong>Example:</strong><br>
+<pre><code>/check_tweets<br>
+</code></pre></p><p>---</p><p><h3><code>/polyu_rank</code></h3><br>
+<strong>Description:</strong> Show your Polymer University leaderboard rank (sheet-based)</p><p><strong>Usage:</strong><br>
+<pre><code>/polyu_rank<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows your rank in the Polymer University leaderboard</li><br>
+<li>Based on data from Google Sheets</li></p><p><strong>Example:</strong><br>
+<pre><code>/polyu_rank<br>
+</code></pre></p><p>---</p><p><h3><code>/metrics_quiz</code></h3><br>
+<strong>Description:</strong> Start a quiz based on current Polymer metrics</p><p><strong>Parameters:</strong><br>
+<li><code>num_questions</code> (optional): Number of questions (default: 3, max: 5)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/metrics_quiz<br>
+/metrics_quiz num_questions:5<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Generates quiz questions based on current Polymer network data</li><br>
+<li>Questions are AI-generated using current metrics</li><br>
+<li>Awards XP for passing</li><br>
+<li>Can only be taken once per day</li></p><p><strong>Example:</strong><br>
+<pre><code>/metrics_quiz num_questions:3<br>
+</code></pre></p><p><strong>Requirements:</strong><br>
+<li>Bot must be able to send DMs</li><br>
+<li>User must have DMs enabled from server members</li><br>
+<li>OpenAI API key required for question generation</li></p><p>---</p><p><h3><code>/predict_volume</code></h3><br>
+<strong>Description:</strong> Predict Polymer's total volume for a future date</p><p><strong>Parameters:</strong><br>
+<li><code>volume_billions</code>: Predicted volume in billions (e.g., 2.5 for $2.5B)</li><br>
+<li><code>target_date</code> (optional): Date to predict for (YYYY-MM-DD format, defaults to tomorrow)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/predict_volume volume_billions:2.5<br>
+/predict_volume volume_billions:3.2 target_date:2024-12-25<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Submits a volume prediction</li><br>
+<li>Predictions are resolved at 23:00 UTC on target date</li><br>
+<li>XP awarded based on accuracy</li><br>
+<li>One prediction per day per user</li></p><p><strong>Example:</strong><br>
+<pre><code>/predict_volume volume_billions:2.75 target_date:2024-12-20<br>
+</code></pre></p><p><strong>Requirements:</strong><br>
+<li>Must submit at least 1 hour before resolution time</li><br>
+<li>One volume prediction per day</li><br>
+<li>Rate limit: 10 seconds between predictions</li></p><p>---</p><p><h3><code>/predict_top10</code></h3><br>
+<strong>Description:</strong> Predict changes to the top 10 transactions</p><p><strong>Parameters:</strong><br>
+<li><code>target_date</code> (optional): Date to predict for (YYYY-MM-DD format, defaults to tomorrow)</li><br>
+<li><code>new_entries</code> (optional): Comma-separated list of token symbols that will enter top 10</li><br>
+<li><code>removed_entries</code> (optional): Comma-separated list of token symbols that will leave top 10</li></p><p><strong>Usage:</strong><br>
+<pre><code>/predict_top10 new_entries:USDC,ETH removed_entries:BTC<br>
+/predict_top10 target_date:2024-12-25 new_entries:MATIC<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Submits a top 10 change prediction</li><br>
+<li>Predicts which tokens will enter/leave top 10</li><br>
+<li>XP awarded based on accuracy</li><br>
+<li>One prediction per day per user</li></p><p><strong>Example:</strong><br>
+<pre><code>/predict_top10 new_entries:USDC,ETH,WBTC removed_entries:MATIC,AVAX<br>
+</code></pre></p><p><strong>Requirements:</strong><br>
+<li>Must submit at least 1 hour before resolution time</li><br>
+<li>One top10 prediction per day</li><br>
+<li>Rate limit: 10 seconds between predictions</li></p><p>---</p><p><h3><code>/my_predictions</code></h3><br>
+<strong>Description:</strong> View your active predictions</p><p><strong>Usage:</strong><br>
+<pre><code>/my_predictions<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows all your active (unresolved) predictions</li><br>
+<li>Displays prediction type, target date, and values</li><br>
+<li>Shows when predictions will be resolved</li></p><p><strong>Example:</strong><br>
+<pre><code>/my_predictions<br>
+</code></pre></p><p>---</p><p><h3><code>/prediction_leaderboard</code></h3><br>
+<strong>Description:</strong> View the prediction game leaderboard</p><p><strong>Parameters:</strong><br>
+<li><code>limit</code> (optional): Number of users to show (default: 10)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/prediction_leaderboard<br>
+/prediction_leaderboard limit:20<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows top users by prediction accuracy</li><br>
+<li>Displays average accuracy and total XP earned</li><br>
+<li>Updates as predictions are resolved</li></p><p><strong>Example:</strong><br>
+<pre><code>/prediction_leaderboard limit:15<br>
+</code></pre></p><p>---</p><p><h2>Admin Commands</h2></p><p>Commands available only to users with admin role or Discord administrators.</p><p><h3><code>/xp_admin_give</code></h3><br>
+<strong>Description:</strong> Give XP to a user (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>user</code>: The user to give XP to</li><br>
+<li><code>amount</code>: Amount of XP to give</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_admin_give user:@username amount:100<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Awards XP directly to a user</li><br>
+<li>Bypasses daily caps</li><br>
+<li>Logs the action with admin source</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_admin_give user:@polymer_user amount:50<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_admin_give_role</code></h3><br>
+<strong>Description:</strong> Give XP to all members with a specific role (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>role</code>: The role to give XP to</li><br>
+<li><code>amount</code>: Amount of XP to give to each member</li><br>
+<li><code>notes</code> (optional): Notes for the XP grant</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_admin_give_role role:@Contributor amount:25<br>
+/xp_admin_give_role role:@EarlyAdopter amount:100 notes:Early supporter bonus<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Awards XP to all members with the specified role</li><br>
+<li>Processes members in batches</li><br>
+<li>Bypasses daily caps</li><br>
+<li>Logs each grant</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_admin_give_role role:@PolymerMember amount:50 notes:Monthly bonus<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_admin_remove</code></h3><br>
+<strong>Description:</strong> Remove XP from a user (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>user</code>: The user to remove XP from</li><br>
+<li><code>amount</code>: Amount of XP to remove</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_admin_remove user:@username amount:50<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Removes XP from a user</li><br>
+<li>Logs the action with admin removal source</li><br>
+<li>Can result in negative XP if amount exceeds current total</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_admin_remove user:@user amount:25<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_migrate_check</code></h3><br>
+<strong>Description:</strong> Check how many old leaderboard entries match registered Twitter handles (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>csv_file</code>: Name of the CSV file to check</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_migrate_check csv_file:leaderboard_old.csv<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Analyzes old leaderboard CSV</li><br>
+<li>Matches entries with registered Twitter handles</li><br>
+<li>Shows statistics on potential migrations</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_migrate_check csv_file:old_leaderboard.csv<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_grandfather_bonus</code></h3><br>
+<strong>Description:</strong> Award grandfather bonus to existing contributors based on tweet count (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>user</code>: The user to award bonus to</li><br>
+<li><code>tweet_count</code>: Number of historical tweets</li><br>
+<li><code>bonus_per_tweet</code> (optional): Bonus XP per tweet (default: 2)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_grandfather_bonus user:@username tweet_count:50<br>
+/xp_grandfather_bonus user:@username tweet_count:100 bonus_per_tweet:3<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Awards bonus XP for historical contributions</li><br>
+<li>Calculates based on tweet count</li><br>
+<li>Bypasses daily caps</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_grandfather_bonus user:@early_contributor tweet_count:75<br>
+</code></pre></p><p>---</p><p><h3><code>/xp_migrate_historical</code></h3><br>
+<strong>Description:</strong> Migrate historical XP from old leaderboard CSV (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>csv_file</code>: Name of the CSV file to migrate from</li><br>
+<li><code>dry_run</code> (optional): If true, only shows what would be migrated (default: true)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/xp_migrate_historical csv_file:leaderboard_old.csv dry_run:true<br>
+/xp_migrate_historical csv_file:leaderboard_old.csv dry_run:false<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Migrates historical XP from old leaderboard</li><br>
+<li>Matches users by Twitter handle</li><br>
+<li>Shows preview in dry-run mode</li><br>
+<li>Actually migrates when dry_run is false</li></p><p><strong>Example:</strong><br>
+<pre><code>/xp_migrate_historical csv_file:old_data.csv dry_run:true<br>
+</code></pre></p><p>---</p><p><h3><code>/process_ungraded_tweets</code></h3><br>
+<strong>Description:</strong> Process all ungraded tweets in the sheet (Admin only)</p><p><strong>Usage:</strong><br>
+<pre><code>/process_ungraded_tweets<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Processes all tweets that haven't been graded yet</li><br>
+<li>Fetches tweet text and grades them</li><br>
+<li>Updates the sheet with grades and XP</li><br>
+<li>Shows progress and results</li></p><p><strong>Example:</strong><br>
+<pre><code>/process_ungraded_tweets<br>
+</code></pre></p><p><strong>Requirements:</strong><br>
+<li>Twitter Bearer Token must be set</li><br>
+<li>OpenAI API Key must be set</li></p><p>---</p><p><h3><code>/post_quiz_button</code></h3><br>
+<strong>Description:</strong> Post a quiz button for users to click (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>quiz_message</code>: The message that will appear above the button</li><br>
+<li><code>num_questions</code>: Number of questions to ask</li><br>
+<li><code>required_score</code>: Number of correct answers needed to pass</li><br>
+<li><code>role_to_assign</code>: Role to assign if user passes</li><br>
+<li><code>qualifying_role</code> (optional): Optional role user must already have to receive reward</li></p><p><strong>Usage:</strong><br>
+<pre><code>/post_quiz_button quiz_message:"Take the quiz!" num_questions:5 required_score:3 role_to_assign:@Graduate<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Posts a quiz button in the channel</li><br>
+<li>Users click to start quiz via DM</li><br>
+<li>Awards role and XP on passing</li><br>
+<li>Supports qualifying roles</li></p><p><strong>Example:</strong><br>
+<pre><code>/post_quiz_button quiz_message:"Complete Chapter 1 Quiz" num_questions:10 required_score:7 role_to_assign:@Chapter1Graduate qualifying_role:@Student<br>
+</code></pre></p><p>---</p><p><h3><code>/clean_threads</code></h3><br>
+<strong>Description:</strong> Clean all threads in a channel created by this bot (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>target_channel</code>: The channel to clean threads from</li></p><p><strong>Usage:</strong><br>
+<pre><code>/clean_threads target_channel:#quiz-channel<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Deletes all threads created by the bot in the specified channel</li><br>
+<li>Useful for cleanup after quizzes</li><br>
+<li>Shows count of deleted threads</li></p><p><strong>Example:</strong><br>
+<pre><code>/clean_threads target_channel:#quizzes<br>
+</code></pre></p><p>---</p><p><h3><code>/bot_component_toggle</code></h3><br>
+<strong>Description:</strong> Enable or disable a bot component (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>component</code>: Component to toggle (autocomplete shows available options)</li><br>
+<li><code>enabled</code>: Whether to enable (true) or disable (false) the component</li></p><p><strong>Usage:</strong><br>
+<pre><code>/bot_component_toggle component:leaderboard_checking enabled:false<br>
+/bot_component_toggle component:metrics_quiz enabled:true<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Enables or disables specific bot features</li><br>
+<li>Components include: leaderboard_checking, volume_checking, daily_summary, prediction_resolution, metrics_quiz, thread_cleanup</li><br>
+<li>Changes are saved to state.json</li></p><p><strong>Example:</strong><br>
+<pre><code>/bot_component_toggle component:prediction_resolution enabled:true<br>
+</code></pre></p><p>---</p><p><h3><code>/bot_component_status</code></h3><br>
+<strong>Description:</strong> View status of all bot components (Admin only)</p><p><strong>Usage:</strong><br>
+<pre><code>/bot_component_status<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Shows enabled/disabled status of all bot components</li><br>
+<li>Displays current configuration</li></p><p><strong>Example:</strong><br>
+<pre><code>/bot_component_status<br>
+</code></pre></p><p>---</p><p><h3><code>/bot_setup</code></h3><br>
+<strong>Description:</strong> Configure bot channels and settings (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>main_metrics_channel</code> (optional): Main channel for metrics announcements</li><br>
+<li><code>metrics_quiz_channel</code> (optional): Channel for daily metrics quiz posts</li><br>
+<li><code>volume_channel</code> (optional): Voice channel for volume counter</li><br>
+<li><code>leaderboard_channel</code> (optional): Channel for daily XP leaderboard posts</li><br>
+<li><code>admin_role</code> (optional): Admin role name</li></p><p><strong>Usage:</strong><br>
+<pre><code>/bot_setup main_metrics_channel:#announcements<br>
+/bot_setup admin_role:"manager perms" main_metrics_channel:#metrics<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Configures bot channels and settings</li><br>
+<li>Updates state.json with new configuration</li><br>
+<li>Shows current configuration if no parameters provided</li></p><p><strong>Example:</strong><br>
+<pre><code>/bot_setup main_metrics_channel:#polymer-metrics metrics_quiz_channel:#quizzes admin_role:"Admin"<br>
+</code></pre></p><p>---</p><p><h3><code>/bot_setup_metrics_channel</code></h3><br>
+<strong>Description:</strong> Set the channel for metrics announcements (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>channel</code>: Text channel for metrics announcements</li></p><p><strong>Usage:</strong><br>
+<pre><code>/bot_setup_metrics_channel channel:#announcements<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Sets the main channel for metrics announcements</li><br>
+<li>Used for daily summaries, top 10 transactions, milestones</li></p><p><strong>Example:</strong><br>
+<pre><code>/bot_setup_metrics_channel channel:#polymer-updates<br>
+</code></pre></p><p>---</p><p><h3><code>/bot_setup_volume_channel</code></h3><br>
+<strong>Description:</strong> Set the voice channel for volume counter (Admin only)</p><p><strong>Parameters:</strong><br>
+<li><code>channel</code> (optional): Voice channel to use (or None to disable)</li></p><p><strong>Usage:</strong><br>
+<pre><code>/bot_setup_volume_channel channel:#Polymer Volume<br>
+/bot_setup_volume_channel channel:None<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Sets voice channel that displays current volume</li><br>
+<li>Channel name updates with volume and 24h change</li><br>
+<li>Set to None to disable</li></p><p><strong>Example:</strong><br>
+<pre><code>/bot_setup_volume_channel channel:#Polymer Stats<br>
+</code></pre></p><p>---</p><p><h3><code>/bot_manual_quiz_post</code></h3><br>
+<strong>Description:</strong> Manually post a metrics quiz announcement (Admin only)</p><p><strong>Usage:</strong><br>
+<pre><code>/bot_manual_quiz_post<br>
+</code></pre></p><p><strong>What it does:</strong><br>
+<li>Manually triggers a metrics quiz announcement</li><br>
+<li>Posts quiz button in configured metrics quiz channel</li><br>
+<li>Useful for testing or manual scheduling</li></p><p><strong>Example:</strong><br>
+<pre><code>/bot_manual_quiz_post<br>
+</code></pre></p><p>---</p><p><h2>Command Examples</h2></p><p><h3>Common User Workflows</h3></p><p><strong>First-time setup:</strong><br>
+<pre><code>1. /set_twitter handle:yourhandle<br>
+<li>/xp_me (check your starting XP)</li><br>
+<li>/submit_tweet url:https://x.com/... (submit your first tweet)</li><br>
+</code></pre></p><p><strong>Daily activities:</strong><br>
+<pre><code>1. /xp_daily_status (check your progress)<br>
+<li>/submit_tweet url:... (submit tweets)</li><br>
+<li>/metrics_quiz (take daily quiz)</li><br>
+<li>/xp_me (check updated XP)</li><br>
+</code></pre></p><p><strong>Tracking progress:</strong><br>
+<pre><code>1. /xp_history limit:10 (see recent XP events)<br>
+<li>/xp_leaderboard (see your rank)</li><br>
+<li>/my_predictions (check your predictions)</li><br>
+</code></pre></p><p><strong>Prediction game:</strong><br>
+<pre><code>1. /predict_volume volume_billions:2.5 target_date:2024-12-20<br>
+<li>/predict_top10 new_entries:USDC,ETH removed_entries:BTC</li><br>
+<li>/my_predictions (check your predictions)</li><br>
+<li>/prediction_leaderboard (see leaderboard)</li><br>
+</code></pre></p><p><h3>Common Admin Workflows</h3></p><p><strong>Initial setup:</strong><br>
+<pre><code>1. /bot_setup admin_role:"Admin" main_metrics_channel:#announcements<br>
+<li>/bot_setup_volume_channel channel:#Polymer Volume</li><br>
+<li>/bot_component_status (verify all components enabled)</li><br>
+</code></pre></p><p><strong>XP management:</strong><br>
+<pre><code>1. /xp_admin_give user:@user amount:100<br>
+<li>/xp_admin_give_role role:@Contributor amount:50</li><br>
+<li>/xp_history user:@user (verify grant)</li><br>
+</code></pre></p><p><strong>Maintenance:</strong><br>
+<pre><code>1. /process_ungraded_tweets (process pending tweets)<br>
+<li>/bot_component_status (check component status)</li><br>
+<li>/clean_threads target_channel:#quizzes (cleanup)</li><br>
+</code></pre></p><p>---</p><p><h2>Notes</h2></p><p><li>All commands are slash commands (type <code>/</code> in Discord to see them)</li><br>
+<li>Commands are case-insensitive</li><br>
+<li>Most commands support autocomplete for parameters</li><br>
+<li>Admin commands require admin role or Discord administrator permissions</li><br>
+<li>Rate limits apply to some commands (shown in command descriptions)</li><br>
+<li>Commands that modify data are logged for audit purposes</li></p><p></p><p><br>
+---</p><p><br>
+<a name='use-case-examples'></a></p><p><br>
+<h1>Use Case Examples</h1></p><p><br>
+<h1>PolyOne Bot - Use Case Examples</h1></p><p>Practical examples for common scenarios and workflows.</p><p><h2>Table of Contents</h2></p><p><li><a href="#getting-started">Getting Started</a></li><br>
+<li><a href="#daily-user-activities">Daily User Activities</a></li><br>
+<li><a href="#admin-management">Admin Management</a></li><br>
+<li><a href="#troubleshooting-scenarios">Troubleshooting Scenarios</a></li><br>
+<li><a href="#advanced-use-cases">Advanced Use Cases</a></li></p><p>---</p><p><h2>Getting Started</h2></p><p><h3>First-Time User Setup</h3></p><p><strong>Scenario:</strong> A new user wants to start earning XP and participating in the community.</p><p><strong>Steps:</strong><br>
+<li>Set your Twitter handle:</li><br>
+   <pre><code>   /set_twitter handle:your_twitter_handle<br>
+   </code></pre></p><p><li>Check your starting XP:</li><br>
+   <pre><code>   /xp_me<br>
+   </code></pre></p><p><li>Submit your first tweet:</li><br>
+   <pre><code>   /submit_tweet url:https://x.com/your_handle/status/1234567890<br>
+   </code></pre></p><p><li>Check your daily status:</li><br>
+   <pre><code>   /xp_daily_status<br>
+   </code></pre></p><p><strong>Expected Results:</strong><br>
+<li>Twitter handle linked to Discord account</li><br>
+<li>Starting XP displayed (likely 0)</li><br>
+<li>Tweet submitted and graded automatically</li><br>
+<li>XP awarded based on tweet quality</li><br>
+<li>Daily progress shown</li></p><p>---</p><p><h3>Setting Up Admin Role</h3></p><p><strong>Scenario:</strong> Setting up the bot for the first time and configuring admin permissions.</p><p><strong>Steps:</strong><br>
+<li>Set admin role via environment variable (in <code>.env</code>):</li><br>
+   <pre><code>   ADMIN_ROLE_NAME=Admin<br>
+   </code></pre></p><p><li>Or set via bot command:</li><br>
+   <pre><code>   /bot_setup admin_role:"Admin"<br>
+   </code></pre></p><p><li>Verify admin role is set:</li><br>
+   <pre><code>   /bot_setup<br>
+   </code></pre></p><p><strong>Expected Results:</strong><br>
+<li>Admin role configured</li><br>
+<li>Users with that role can use admin commands</li><br>
+<li>Discord administrators always have access</li></p><p>---</p><p><h2>Daily User Activities</h2></p><p><h3>Daily XP Grinding Routine</h3></p><p><strong>Scenario:</strong> A user wants to maximize their daily XP earnings.</p><p><strong>Morning Routine:</strong><br>
+<li>Check daily status:</li><br>
+   <pre><code>   /xp_daily_status<br>
+   </code></pre></p><p><li>Take the daily metrics quiz:</li><br>
+   <pre><code>   /metrics_quiz num_questions:5<br>
+   </code></pre></p><p><li>Submit quality tweets throughout the day:</li><br>
+   <pre><code>   /submit_tweet url:https://x.com/.../status/...<br>
+   </code></pre></p><p><li>Check progress:</li><br>
+   <pre><code>   /xp_me<br>
+   </code></pre></p><p><strong>Tips:</strong><br>
+<li>Submit tweets with quality content about Polymer</li><br>
+<li>Take the quiz early (can only do once per day)</li><br>
+<li>Check your tier to know your daily cap</li><br>
+<li>Higher tier = lower daily cap (catch-up mechanics)</li></p><p>---</p><p><h3>Participating in Prediction Game</h3></p><p><strong>Scenario:</strong> A user wants to participate in the prediction game and earn XP.</p><p><strong>Steps:</strong><br>
+<li>Check current metrics:</li><br>
+   <pre><code>   /polymer_status<br>
+   </code></pre></p><p><li>Make a volume prediction:</li><br>
+   <pre><code>   /predict_volume volume_billions:2.75 target_date:2024-12-20<br>
+   </code></pre></p><p><li>Make a top 10 prediction:</li><br>
+   <pre><code>   /predict_top10 new_entries:USDC,ETH removed_entries:BTC<br>
+   </code></pre></p><p><li>Check your predictions:</li><br>
+   <pre><code>   /my_predictions<br>
+   </code></pre></p><p><li>View leaderboard:</li><br>
+   <pre><code>   /prediction_leaderboard limit:20<br>
+   </code></pre></p><p><strong>Tips:</strong><br>
+<li>Submit predictions at least 1 hour before resolution (23:00 UTC)</li><br>
+<li>One prediction per type per day</li><br>
+<li>Accuracy determines XP reward</li><br>
+<li>Check leaderboard to see top predictors</li></p><p>---</p><p><h3>Tracking Progress Over Time</h3></p><p><strong>Scenario:</strong> A user wants to track their XP growth and see their history.</p><p><strong>Steps:</strong><br>
+<li>View current status:</li><br>
+   <pre><code>   /xp_me<br>
+   </code></pre></p><p><li>Check recent XP events:</li><br>
+   <pre><code>   /xp_history limit:30<br>
+   </code></pre></p><p><li>See your rank:</li><br>
+   <pre><code>   /xp_leaderboard<br>
+   </code></pre></p><p><li>Check daily progress:</li><br>
+   <pre><code>   /xp_daily_status<br>
+   </code></pre></p><p><strong>What to Look For:</strong><br>
+<li>XP breakdown by source</li><br>
+<li>Recent activity in history</li><br>
+<li>Rank progression over time</li><br>
+<li>Daily cap remaining</li></p><p>---</p><p><h2>Admin Management</h2></p><p><h3>Initial Bot Configuration</h3></p><p><strong>Scenario:</strong> Setting up the bot for the first time in a new server.</p><p><strong>Steps:</strong><br>
+<li>Configure all channels at once:</li><br>
+   <pre><code>   /bot_setup main_metrics_channel:#announcements metrics_quiz_channel:#quizzes leaderboard_channel:#leaderboard admin_role:"Admin"<br>
+   </code></pre></p><p><li>Set volume channel:</li><br>
+   <pre><code>   /bot_setup_volume_channel channel:#Polymer Volume<br>
+   </code></pre></p><p><li>Verify configuration:</li><br>
+   <pre><code>   /bot_component_status<br>
+   </code></pre></p><p><li>Test a command:</li><br>
+   <pre><code>   /polymer_status<br>
+   </code></pre></p><p><strong>Expected Results:</strong><br>
+<li>All channels configured</li><br>
+<li>Components enabled</li><br>
+<li>Bot responding to commands</li><br>
+<li>Volume channel updating</li></p><p>---</p><p><h3>Awarding XP to Users</h3></p><p><strong>Scenario:</strong> Admin wants to reward users for special contributions.</p><p><strong>Single User:</strong><br>
+<pre><code>/xp_admin_give user:@username amount:100<br>
+</code></pre></p><p><strong>Entire Role:</strong><br>
+<pre><code>/xp_admin_give_role role:@Contributor amount:50 notes:Monthly bonus<br>
+</code></pre></p><p><strong>Verify Grant:</strong><br>
+<pre><code>/xp_history user:@username<br>
+</code></pre></p><p><strong>Tips:</strong><br>
+<li>Admin grants bypass daily caps</li><br>
+<li>All grants are logged</li><br>
+<li>Use notes to track reason for grant</li><br>
+<li>Bulk grants process in batches</li></p><p>---</p><p><h3>Processing Ungraded Tweets</h3></p><p><strong>Scenario:</strong> Tweets were submitted but not automatically graded (API issues, etc.).</p><p><strong>Steps:</strong><br>
+<li>Check for ungraded tweets (manual check in Google Sheets)</li></p><p><li>Process all ungraded tweets:</li><br>
+   <pre><code>   /process_ungraded_tweets<br>
+   </code></pre></p><p><li>Monitor progress (command shows results)</li></p><p><li>Verify in sheet that tweets are now graded</li></p><p><strong>Requirements:</strong><br>
+<li>Twitter Bearer Token must be set</li><br>
+<li>OpenAI API Key must be set</li><br>
+<li>May take time for large batches</li></p><p>---</p><p><h3>Managing Bot Components</h3></p><p><strong>Scenario:</strong> Temporarily disable a feature for maintenance.</p><p><strong>Steps:</strong><br>
+<li>Check current status:</li><br>
+   <pre><code>   /bot_component_status<br>
+   </code></pre></p><p><li>Disable a component:</li><br>
+   <pre><code>   /bot_component_toggle component:prediction_resolution enabled:false<br>
+   </code></pre></p><p><li>Verify disabled:</li><br>
+   <pre><code>   /bot_component_status<br>
+   </code></pre></p><p><li>Re-enable when ready:</li><br>
+   <pre><code>   /bot_component_toggle component:prediction_resolution enabled:true<br>
+   </code></pre></p><p><strong>Available Components:</strong><br>
+<li><code>leaderboard_checking</code> - Top 10 transaction alerts</li><br>
+<li><code>volume_checking</code> - Volume milestones</li><br>
+<li><code>daily_summary</code> - Daily status posts</li><br>
+<li><code>prediction_resolution</code> - Prediction game resolution</li><br>
+<li><code>metrics_quiz</code> - Daily metrics quiz</li><br>
+<li><code>thread_cleanup</code> - Automatic thread cleanup</li></p><p>---</p><p><h3>Historical Data Migration</h3></p><p><strong>Scenario:</strong> Migrating XP from an old leaderboard system.</p><p><strong>Steps:</strong><br>
+<li>Prepare CSV file with old data (Member column with Twitter handles)</li></p><p><li>Check what would be migrated:</li><br>
+   <pre><code>   /xp_migrate_check csv_file:old_leaderboard.csv<br>
+   </code></pre></p><p><li>Dry run to preview:</li><br>
+   <pre><code>   /xp_migrate_historical csv_file:old_leaderboard.csv dry_run:true<br>
+   </code></pre></p><p><li>Perform actual migration:</li><br>
+   <pre><code>   /xp_migrate_historical csv_file:old_leaderboard.csv dry_run:false<br>
+   </code></pre></p><p><li>Verify migration:</li><br>
+   <pre><code>   /xp_history user:@username<br>
+   </code></pre></p><p><strong>Tips:</strong><br>
+<li>Always do dry run first</li><br>
+<li>Verify CSV format matches expected structure</li><br>
+<li>Check Twitter handles are registered</li><br>
+<li>Migration bypasses daily caps</li></p><p>---</p><p><h2>Troubleshooting Scenarios</h2></p><p><h3>Bot Not Responding to Commands</h3></p><p><strong>Symptoms:</strong> Commands don't appear or return errors.</p><p><strong>Diagnosis Steps:</strong><br>
+<li>Check bot is online in server member list</li><br>
+<li>Verify bot has necessary permissions</li><br>
+<li>Check logs: <code>logs/polyone_errors.log</code></li><br>
+<li>Try restarting the bot</li></p><p><strong>Solutions:</strong><br>
+<li>Ensure bot has "Use Application Commands" permission</li><br>
+<li>Check bot's role hierarchy</li><br>
+<li>Verify channel permissions</li><br>
+<li>Wait 1-2 minutes after bot start for command sync</li></p><p>---</p><p><h3>Tweet Grading Not Working</h3></p><p><strong>Symptoms:</strong> Tweets submitted but not graded automatically.</p><p><strong>Diagnosis Steps:</strong><br>
+<li>Check if API keys are set:</li><br>
+   - <code>TWITTER_BEARER_TOKEN</code><br>
+   - <code>OPENAI_API_KEY</code></p><p><li>Check logs for errors:</li><br>
+   <pre><code>   logs/polyone_errors.log<br>
+   </code></pre></p><p><li>Try processing manually:</li><br>
+   <pre><code>   /process_ungraded_tweets<br>
+   </code></pre></p><p><strong>Solutions:</strong><br>
+<li>Verify API keys are valid and active</li><br>
+<li>Check API quotas haven't been exceeded</li><br>
+<li>Use manual processing if automatic fails</li><br>
+<li>Check tweet URLs are accessible</li></p><p>---</p><p><h3>XP Not Updating</h3></p><p><strong>Symptoms:</strong> XP should have been awarded but didn't update.</p><p><strong>Diagnosis Steps:</strong><br>
+<li>Check daily cap:</li><br>
+   <pre><code>   /xp_daily_status<br>
+   </code></pre></p><p><li>Check XP history:</li><br>
+   <pre><code>   /xp_history limit:10<br>
+   </code></pre></p><p><li>Verify in Google Sheets (xp_events tab)</li></p><p><strong>Solutions:</strong><br>
+<li>Daily cap may have been reached</li><br>
+<li>Check if event was logged in xp_events</li><br>
+<li>Verify xp_totals formulas are working</li><br>
+<li>Check for errors in logs</li></p><p>---</p><p><h3>Quiz Not Starting</h3></p><p><strong>Symptoms:</strong> Quiz command doesn't work or times out.</p><p><strong>Diagnosis Steps:</strong><br>
+<li>Check if bot can send DMs:</li><br>
+   - Try <code>/xp_me</code> (should work)<br>
+   - Check user's DM settings</p><p><li>Check component status:</li><br>
+   <pre><code>   /bot_component_status<br>
+   </code></pre></p><p><li>Check logs for errors</li></p><p><strong>Solutions:</strong><br>
+<li>Enable DMs from server members</li><br>
+<li>Verify metrics_quiz component is enabled</li><br>
+<li>Check OpenAI API key is set (for question generation)</li><br>
+<li>Wait 30 seconds between quiz attempts</li></p><p>---</p><p><h2>Advanced Use Cases</h2></p><p><h3>Running a Community Event</h3></p><p><strong>Scenario:</strong> Organizing a special event with custom XP rewards.</p><p><strong>Steps:</strong><br>
+<li>Create event role:</li><br>
+   - Create role in Discord: <code>@EventParticipant</code></p><p><li>Award XP to participants:</li><br>
+   <pre><code>   /xp_admin_give_role role:@EventParticipant amount:100 notes:Community Event Bonus<br>
+   </code></pre></p><p><li>Track participation:</li><br>
+   <pre><code>   /xp_history user:@participant<br>
+   </code></pre></p><p><li>Announce winners:</li><br>
+   <pre><code>   /xp_leaderboard<br>
+   </code></pre></p><p>---</p><p><h3>Setting Up Custom Quiz</h3></p><p><strong>Scenario:</strong> Creating a custom quiz for a specific topic.</p><p><strong>Steps:</strong><br>
+<li>Prepare CSV file with questions:</li><br>
+   - Columns: question, option_a, option_b, option_c, option_d, correct</p><p><li>Post quiz button:</li><br>
+   <pre><code>   /post_quiz_button quiz_message:"Chapter 1 Quiz" num_questions:10 required_score:7 role_to_assign:@Chapter1Graduate<br>
+   </code></pre></p><p><li>Monitor completions:</li><br>
+   - Check quiz results in Google Sheets<br>
+   - Use <code>/xp_history</code> to see completions</p><p>---</p><p><h3>Monitoring Bot Health</h3></p><p><strong>Scenario:</strong> Regular maintenance and health checks.</p><p><strong>Daily Checks:</strong><br>
+<li>Check component status:</li><br>
+   <pre><code>   /bot_component_status<br>
+   </code></pre></p><p><li>Review error logs:</li><br>
+   <pre><code>   logs/polyone_errors.log<br>
+   </code></pre></p><p><li>Test key commands:</li><br>
+   <pre><code>   /polymer_status<br>
+   /xp_me<br>
+   </code></pre></p><p><strong>Weekly Checks:</strong><br>
+<li>Process ungraded tweets:</li><br>
+   <pre><code>   /process_ungraded_tweets<br>
+   </code></pre></p><p><li>Clean up old threads:</li><br>
+   <pre><code>   /clean_threads target_channel:#quizzes<br>
+   </code></pre></p><p><li>Review configuration:</li><br>
+   <pre><code>   /bot_setup<br>
+   </code></pre></p><p>---</p><p><h3>Bulk User Management</h3></p><p><strong>Scenario:</strong> Awarding XP to multiple users based on criteria.</p><p><strong>By Role:</strong><br>
+<pre><code>/xp_admin_give_role role:@EarlyAdopter amount:200 notes:Early supporter bonus<br>
+</code></pre></p><p><strong>Individual Users (if needed):</strong><br>
+<pre><code>/xp_admin_give user:@user1 amount:50<br>
+/xp_admin_give user:@user2 amount:50<br>
+/xp_admin_give user:@user3 amount:50<br>
+</code></pre></p><p><strong>Verify:</strong><br>
+<li>Check each user's history</li><br>
+<li>Verify totals updated correctly</li><br>
+<li>Check logs for any errors</li></p><p>---</p><p><h2>Best Practices</h2></p><p><h3>For Users</h3><br>
+<li>Set your Twitter handle early</li><br>
+<li>Submit quality content for better grades</li><br>
+<li>Take the daily quiz every day</li><br>
+<li>Make thoughtful predictions</li><br>
+<li>Check your daily status regularly</li></p><p><h3>For Admins</h3><br>
+<li>Test commands in a test server first</li><br>
+<li>Always do dry runs for migrations</li><br>
+<li>Monitor error logs regularly</li><br>
+<li>Keep API keys secure</li><br>
+<li>Document custom configurations</li><br>
+<li>Use notes when awarding XP</li><br>
+<li>Verify grants after awarding</li></p><p><h3>General</h3><br>
+<li>Keep bot updated</li><br>
+<li>Backup state.json regularly</li><br>
+<li>Monitor log file sizes</li><br>
+<li>Review component status weekly</li><br>
+<li>Test after configuration changes</li></p><p>---</p><p><h2>Tips and Tricks</h2></p><p><li><strong>Maximize Daily XP:</strong></li><br>
+   - Take quiz early (once per day)<br>
+   - Submit multiple quality tweets<br>
+   - Make accurate predictions<br>
+   - Check your tier for daily cap</p><p><li><strong>Better Tweet Grades:</strong></li><br>
+   - Explain Polymer clearly<br>
+   - Include value propositions<br>
+   - Add call-to-action<br>
+   - Use relevant hashtags</p><p><li><strong>Accurate Predictions:</strong></li><br>
+   - Check current metrics first<br>
+   - Consider trends<br>
+   - Submit early (before deadline)<br>
+   - Review past predictions</p><p><li><strong>Admin Efficiency:</strong></li><br>
+   - Use bulk role grants when possible<br>
+   - Set up channels once via <code>/bot_setup</code><br>
+   - Use component toggles for maintenance<br>
+   - Monitor logs proactively</p><p>---</p><p><h2>Getting Help</h2></p><p>If you encounter issues not covered here:</p><p><li>Check <code>POLYONE_BOT_DOCUMENTATION.md</code> for setup guide</li><br>
+<li>Review <code>COMMANDS_REFERENCE.md</code> for command details</li><br>
+<li>Check <code>logs/polyone_errors.log</code> for errors</li><br>
+<li>Use <code>/bot_component_status</code> to verify bot health</li><br>
+<li>Review troubleshooting section in documentation</li></p><p></p><p><br>
+---</p><p><br>
+<a name='deployment-guide'></a></p><p><br>
+<h1>Deployment Guide</h1></p><p><br>
+<h1>PolyOne Bot - Deployment Guide</h1></p><p><h2>Prerequisites</h2></p><p><li>Docker and Docker Compose installed</li><br>
+<li>Discord Bot Token</li><br>
+<li>Google Service Account JSON file</li><br>
+<li>(Optional) OpenAI API Key for tweet grading</li><br>
+<li>(Optional) Twitter/X Bearer Token for tweet fetching</li></p><p><h2>Quick Start</h2></p><p><h3>1. Environment Setup</h3></p><p>Create a <code>.env</code> file in the project root:</p><p><pre><code><h1>Required</h1><br>
+DISCORD_TOKEN=your_discord_bot_token_here<br>
+GOOGLE_SERVICE_ACCOUNT_FILE=service_account.json<br>
+GOOGLE_SPREADSHEET_NAME=Polymer University Dashboard</p><p><h1>Optional - API Keys</h1><br>
+OPENAI_API_KEY=your_openai_key_here<br>
+TWITTER_BEARER_TOKEN=your_twitter_token_here</p><p><h1>Optional - Channel IDs</h1><br>
+METRICS_CHANNEL_ID=123456789012345678<br>
+VOLUME_CHANNEL_ID=123456789012345678</p><p><h1>Optional - Admin Notifications</h1><br>
+ADMIN_DM_USER_IDS=123456789,987654321<br>
+ERROR_NOTIFICATION_ENABLED=true</p><p><h1>Optional - Logging</h1><br>
+LOG_LEVEL=INFO<br>
+LOG_DIR=logs<br>
+LOG_FILE_MAX_BYTES=10485760<br>
+LOG_FILE_BACKUP_COUNT=5</p><p><h1>Optional - Polling</h1><br>
+POLL_INTERVAL=600<br>
+</code></pre></p><p><h3>2. Required Files</h3></p><p>Ensure these files are in the project directory:</p><p><li><code>PolyOne.py</code> - Main bot file</li><br>
+<li><code>service_account.json</code> - Google Service Account credentials</li><br>
+<li><code>twitter_handles.csv</code> - Twitter handle mappings (will be created if missing)</li><br>
+<li><code>requirements.txt</code> - Python dependencies</li><br>
+<li><code>.env</code> - Environment variables (see above)</li></p><p><h3>3. Build and Run</h3></p><p><h4>Using Docker Compose (Recommended)</h4></p><p><pre><code><h1>Build and start the bot</h1><br>
+docker-compose up -d</p><p><h1>View logs</h1><br>
+docker-compose logs -f</p><p><h1>Stop the bot</h1><br>
+docker-compose down<br>
+</code></pre></p><p><h4>Using Docker Directly</h4></p><p><pre><code><h1>Build the image</h1><br>
+docker build -t polyone-bot .</p><p><h1>Run the container</h1><br>
+docker run -d \<br>
+  --name polyone-bot \<br>
+  --restart unless-stopped \<br>
+  --env-file .env \<br>
+  -v $(pwd)/logs:/app/logs \<br>
+  -v $(pwd)/state.json:/app/state.json \<br>
+  polyone-bot<br>
+</code></pre></p><p><h4>Running Locally (Without Docker)</h4></p><p><pre><code><h1>Install dependencies</h1><br>
+pip install -r requirements.txt</p><p><h1>Run the bot</h1><br>
+python PolyOne.py<br>
+</code></pre></p><p><h2>Configuration</h2></p><p><h3>Google Sheets Setup</h3></p><p><li>Create a Google Cloud Project</li><br>
+<li>Enable Google Sheets API and Google Drive API</li><br>
+<li>Create a Service Account</li><br>
+<li>Download the JSON key file as <code>service_account.json</code></li><br>
+<li>Share your Google Spreadsheet with the service account email</li></p><p><h3>Discord Bot Setup</h3></p><p><li>Go to https://discord.com/developers/applications</li><br>
+<li>Create a new application</li><br>
+<li>Go to "Bot" section and create a bot</li><br>
+<li>Copy the bot token to <code>.env</code> as <code>DISCORD_TOKEN</code></li><br>
+<li>Enable required intents:</li><br>
+   - Server Members Intent<br>
+   - Message Content Intent<br>
+<li>Invite bot to your server with appropriate permissions</li></p><p><h3>Admin Notifications</h3></p><p>To receive error notifications via DM:</p><p><li>Get your Discord User ID (enable Developer Mode, right-click your profile, "Copy ID")</li><br>
+<li>Add your User ID(s) to <code>.env</code>:</li><br>
+   <pre><code>   ADMIN_DM_USER_IDS=123456789,987654321<br>
+   </code></pre><br>
+<li>Ensure error notifications are enabled:</li><br>
+   <pre><code>   ERROR_NOTIFICATION_ENABLED=true<br>
+   </code></pre></p><p><h2>Monitoring</h2></p><p><h3>Logs</h3></p><p>Logs are stored in the <code>logs/</code> directory:</p><p><li><code>polyone.log</code> - All logs (INFO and above)</li><br>
+<li><code>polyone_errors.log</code> - Errors only</li></p><p>View logs:<br>
+<pre><code><h1>Docker Compose</h1><br>
+docker-compose logs -f</p><p><h1>Docker</h1><br>
+docker logs -f polyone-bot</p><p><h1>Local</h1><br>
+tail -f logs/polyone.log<br>
+</code></pre></p><p><h3>Health Checks</h3></p><p>The Docker Compose setup includes a health check that verifies the bot is running and creating log files.</p><p>Check health status:<br>
+<pre><code>docker-compose ps<br>
+</code></pre></p><p><h3>State File</h3></p><p>The bot state is saved in <code>state.json</code>. This file is automatically created and updated. Make sure it's persisted (mounted as a volume in Docker).</p><p><h2>Troubleshooting</h2></p><p><h3>Bot Not Starting</h3></p><p><li>Check logs: <code>docker-compose logs</code></li><br>
+<li>Verify <code>.env</code> file has all required variables</li><br>
+<li>Ensure <code>service_account.json</code> exists and is valid</li><br>
+<li>Check Discord token is correct</li></p><p><h3>Google Sheets Errors</h3></p><p><li>Verify service account JSON is valid</li><br>
+<li>Check spreadsheet is shared with service account email</li><br>
+<li>Ensure sheet names match configuration</li></p><p><h3>Rate Limiting Issues</h3></p><p>If you see rate limit errors:<br>
+<li>The bot includes rate limiting protection</li><br>
+<li>Some operations may be delayed automatically</li><br>
+<li>Check logs for specific rate limit messages</li></p><p><h3>Missing Permissions</h3></p><p>Ensure the bot has these permissions in Discord:<br>
+<li>Send Messages</li><br>
+<li>Embed Links</li><br>
+<li>Manage Messages (for cleanup)</li><br>
+<li>Manage Channels (for volume counter)</li><br>
+<li>Read Message History</li></p><p><h2>Updates</h2></p><p>To update the bot:</p><p><pre><code><h1>Pull latest code</h1><br>
+git pull</p><p><h1>Rebuild and restart</h1><br>
+docker-compose down<br>
+docker-compose build<br>
+docker-compose up -d<br>
+</code></pre></p><p><h2>Backup</h2></p><p>Important files to backup:</p><p><li><code>state.json</code> - Bot state and configuration</li><br>
+<li><code>logs/</code> - Log files</li><br>
+<li><code>twitter_handles.csv</code> - User mappings</li><br>
+<li><code>service_account.json</code> - Google credentials</li><br>
+<li><code>.env</code> - Environment variables (keep secure!)</li></p><p><h2>Security Notes</h2></p><p><li>Never commit <code>.env</code> or <code>service_account.json</code> to version control</li><br>
+<li>Keep your Discord bot token secret</li><br>
+<li>Regularly rotate API keys</li><br>
+<li>Use Docker secrets or environment variable managers in production</li></p><p><h2>Support</h2></p><p>For issues or questions:<br>
+<li>Check logs first: <code>logs/polyone.log</code> and <code>logs/polyone_errors.log</code></li><br>
+<li>Review error notifications (if configured)</li><br>
+<li>Check component status: <code>/bot_component_status</code> (admin command)</li></p><p></p><p></p><p></p><p><br>
+---</p><p><br>
+<a name='changelog'></a></p><p><br>
+<h1>Changelog</h1></p><p><br>
+<h1>Changelog</h1></p><p>All notable changes to the PolyOne bot will be documented in this file.</p><p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p><p><h2>[Unreleased]</h2></p><p><h3>Added</h3><br>
+<li>Configuration validation on startup</li><br>
+<li>Comprehensive error messages with actionable guidance</li><br>
+<li>Type hints throughout codebase for better maintainability</li><br>
+<li>Enhanced docstrings for all major functions</li><br>
+<li>Quick start guide with troubleshooting section</li><br>
+<li>Complete commands reference documentation</li><br>
+<li>Changelog for tracking changes</li></p><p><h3>Changed</h3><br>
+<li>Admin role is now configurable via environment variable or bot command</li><br>
+<li>All print statements replaced with proper logging</li><br>
+<li>Improved error messages for better debugging</li><br>
+<li>Enhanced configuration validation with warnings and errors</li></p><p><h3>Fixed</h3><br>
+<li>Code review and cleanup after crash recovery</li><br>
+<li>Improved error handling in various functions</li><br>
+<li>Better type safety with proper type hints</li></p><p><h2>[Recent Updates]</h2></p><p><h3>Code Quality Improvements</h3><br>
+<li>Added type hints to 15+ functions</li><br>
+<li>Added/improved docstrings for 10+ functions</li><br>
+<li>Improved error messages in 5+ locations</li><br>
+<li>Standardized logging throughout codebase</li></p><p><h3>Documentation Enhancements</h3><br>
+<li>Expanded troubleshooting section with detailed solutions</li><br>
+<li>Created comprehensive commands reference</li><br>
+<li>Added examples for common use cases</li><br>
+<li>Improved quick start guide</li></p><p><h3>Configuration</h3><br>
+<li>Admin role configurable via <code>ADMIN_ROLE_NAME</code> env var</li><br>
+<li>Admin role can be changed via <code>/bot_setup</code> command</li><br>
+<li>Configuration validation on startup prevents common issues</li></p><p><h3>Logging</h3><br>
+<li>All print statements replaced with logger calls</li><br>
+<li>Structured logging with file rotation</li><br>
+<li>Separate error log file for easier debugging</li><br>
+<li>Log levels configurable via <code>LOG_LEVEL</code> env var</li></p><p><h2>[Previous Features]</h2></p><p><h3>Core Features</h3><br>
+<li>XP system with tiered daily caps</li><br>
+<li>Tweet submission and automatic grading</li><br>
+<li>Metrics quiz with AI-generated questions</li><br>
+<li>Prediction game (volume and top 10)</li><br>
+<li>Daily leaderboard and summaries</li><br>
+<li>Volume channel counter</li><br>
+<li>Top 10 transaction alerts</li><br>
+<li>Milestone celebrations</li></p><p><h3>Admin Features</h3><br>
+<li>XP management (give, remove, bulk grants)</li><br>
+<li>Component toggling</li><br>
+<li>Channel configuration</li><br>
+<li>Historical data migration</li><br>
+<li>Ungraded tweet processing</li></p><p><h3>Integrations</h3><br>
+<li>Google Sheets for data storage</li><br>
+<li>Twitter/X API for tweet fetching</li><br>
+<li>OpenAI API for tweet grading and quiz generation</li><br>
+<li>Polymer Analytics API for metrics</li><br>
+<li>DeFiLlama API for chain metadata</li></p><p>---</p><p><h2>Version History</h2></p><p><h3>v1.0.0 (Initial Release)</h3><br>
+<li>Basic XP tracking</li><br>
+<li>Tweet submission system</li><br>
+<li>Google Sheets integration</li><br>
+<li>Discord slash commands</li><br>
+<li>Admin commands</li></p><p><h3>v1.1.0</h3><br>
+<li>Added prediction game</li><br>
+<li>Metrics quiz feature</li><br>
+<li>Daily caps system</li><br>
+<li>Volume channel counter</li></p><p><h3>v1.2.0</h3><br>
+<li>Component toggling</li><br>
+<li>Enhanced error handling</li><br>
+<li>Improved logging</li><br>
+<li>Configuration validation</li></p><p><h3>v1.3.0 (Current)</h3><br>
+<li>Code quality improvements</li><br>
+<li>Enhanced documentation</li><br>
+<li>Configurable admin role</li><br>
+<li>Standardized logging</li></p><p>---</p><p><h2>Migration Notes</h2></p><p><h3>Upgrading to v1.3.0</h3></p><p><strong>Breaking Changes:</strong><br>
+<li>None</li></p><p><strong>New Requirements:</strong><br>
+<li>Python 3.8+ (no change)</li><br>
+<li>All existing environment variables still supported</li></p><p><strong>Configuration Changes:</strong><br>
+<li>New optional env var: <code>ADMIN_ROLE_NAME</code> (defaults to "manager perms")</li><br>
+<li>Admin role can now be changed via <code>/bot_setup</code> command</li></p><p><strong>Action Required:</strong><br>
+<li>Review and update admin role name if needed</li><br>
+<li>Check logs for any new warnings during startup</li><br>
+<li>Verify configuration validation passes</li></p><p>---</p><p><h2>Future Plans</h2></p><p><h3>Planned Features</h3><br>
+<li>[ ] Web dashboard for analytics</li><br>
+<li>[ ] Additional quiz types</li><br>
+<li>[ ] Enhanced prediction game features</li><br>
+<li>[ ] API endpoints for external integrations</li><br>
+<li>[ ] Automated testing suite</li><br>
+<li>[ ] Performance optimizations</li></p><p><h3>Known Issues</h3><br>
+<li>None currently documented</li></p><p>---</p><p><h2>Contributing</h2></p><p>When adding new features or fixing bugs, please:<br>
+<li>Update this changelog</li><br>
+<li>Add appropriate type hints</li><br>
+<li>Include docstrings</li><br>
+<li>Update relevant documentation</li><br>
+<li>Test thoroughly</li></p><p>---</p><p><h2>Support</h2></p><p>For issues or questions:<br>
+<li>Check <code>POLYONE_BOT_DOCUMENTATION.md</code> for setup guide</li><br>
+<li>Review <code>COMMANDS_REFERENCE.md</code> for command usage</li><br>
+<li>Check logs in <code>logs/</code> directory</li><br>
+<li>Use <code>/bot_component_status</code> to verify bot health</li></p><p></p><p><br>
+---</p><p></p>
+</body>
+</html>

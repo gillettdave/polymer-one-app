@@ -1,0 +1,45 @@
+question,option_a,option_b,option_c,option_d,correct
+Does Everclear rely on custom bridges?,"Yes, exclusively",Only for Ethereum,"No, it does not",Only during failures,c
+Does Prove API rely on external oracles?,Yes,Sometimes,No,Only for security,c
+How do developers control crosschain logic with Polymer?,They cannot,Via governance votes,By adding proof verification where desired,Through centralized relayers,c
+How can Polymer be used within Lucid?,Only standalone bridge,Only consensus module,Only via governance,Standalone or Multi-Bridge consensus,d
+Everclear is best described as what type of solution?,A Layer 1 blockchain,A netting solution,A centralized wallet,A data availability layer,b
+How many blockchains does Everclear support with Polymer?,45+,20+,10+,100+,a
+How many bridge options can Lucid users access including Polymer?,1,3,12,7,c
+What are Polymer proofs tied directly to?,Off-chain APIs,User wallets,On-chain events,Centralized indexes,c
+How will users and agents pay for Prove API with x402?,Only credit cards,Monthly invoices,NFT staking,Credits or direct microfees,d
+What benefit does proof-first design provide?,Vendor lock-in,Application portability and fast integration,Higher gas usage,More complexity,b
+What chains does Polymer currently focus on?,Non-EVM chains only,Bitcoin sidechains,EVM Rollups and EVM L1s,Private blockchains,c
+What contract-side change is needed to use Prove API in Lucid?,Simple addition of the SDK,Full contract rewrite,Deploy new bridge contracts,No change at all,a
+What annualized volume is Polymer on track to surpass?,$4B,$1B,$500M,$10B,a
+What cost target does Polymer enable for payments?,$1+,10 cents,Free only,1 cent or less,d
+What is Polymer’s expected settlement speed in Lucid?,30 seconds,10 seconds,1 minute,3-4 seconds,d
+What is the traditional way interoperability is often framed?,As a custody issue,As a messaging problem,As a scaling issue,As a governance issue,b
+What does the Prove API replace messaging with?,Relayers,Bridges,Proofs,Validators,c
+What is a key feature of Polymer settlements?,Sub-second settlement,High fees,Minute-long finality,Manual reconciliation,a
+What is x402 designed for?,NFT royalties,High-value settlements,DAO governance,On-chain micropayments,d
+What does Polymer abstract away for developers?,Consensus algorithms only,"Interoperability, proofs, and settlement complexity",Frontend design,Tokenomics,b
+What is required to build crosschain apps with Polymer?,Custom messaging contracts,Listening for events,Running validators,Using bridges,b
+What developer experience does Polymer aim to provide?,Manual configuration,One-click experience,CLI-only workflow,Multi-week onboarding,b
+What design philosophy does Polymer emphasize?,Message-first,Oracle-first,Proof-first,Bridge-first,c
+What is Polymers north star?,Solving the payment crisis,Replacing banks,Building wallets,Launching a chain,a
+What does Polymer remove the need to configure?,Smart contract storage,Routes and re-routing,Gas tokens,User wallets,b
+What kind of base layer does proof-based interop create?,Fragile,Slow,More reliable and scalable,More centralized,c
+What does the Execute API do?,Execute transactions on destination chains,Store user funds,Generate proofs,Route messages,a
+What happens to existing smart contracts with Polymer?,They must be rewritten,They stop working,They work as they did before,They require new interfaces,c
+What Lucid version includes Polymer integration?,Lucid V2,Lucid V1,Lucid Beta,Lucid DAO,a
+What makes Polymer competitive at scale?,More validators,Best UX,Largest DAO,Fastest execution and lowest cost,d
+What market size are stablecoins projected to reach by 2030?,$500B,$1T,$10T,$2-4T,d
+What problem does Polymer help Everclear reduce?,Slippage in cross-chain transfers,Bridge security risks,High gas fees,Validator downtime,a
+What replaces subscriptions in an agent-driven economy?,Pay-per-use microfees,Annual fees,Freemium tiers,Manual invoices,a
+What role does Polymer play for Everclear?,Powering frontend UX only,Powering the end-to-end transaction cycle,Providing custody services,Acting as a centralized exchange,b
+What scaling problem do point-to-point bridges face?,Exponential Growth and individual connection,Linear growth,Negative scaling,No scaling limits,a
+What trend defines modern money according to Polymer?,Paper-based,Bank-centric,Offline-first,Onchain and agentic,d
+What type of network is Polymer pioneering?,Payment verifier network,Validator auction network,Messaging network,Bridge aggregation network,a
+What type of platform is Lucid?,Multi-bridge liquidity hub,DEX aggregator,Custodial wallet,Layer 1 chain,a
+What type of tokens can be bridged with Polymer in Lucid?,ERC721,Native ETH only,BTC,xERC20,d
+When did Polymer’s Prove API launch?,January of 2024,July of 2025,March of 2023,October of 2024,b
+Which API does Everclear use to generate payment proofs?,Prove API,Bridge API,Execute API,Liquidity API,a
+Which chains are primarily supported by Everclear?,Solana and Aptos,Bitcoin and Lightning,"Ethereum, Base, and Tron",Cosmos Hub only,c
+Who primarily benefits from Everclear’s netting solution?,NFT artists,Solvers and centralized exchanges,Stablecoin issuers,DAO governors,b
+Why are credit cards poorly suited for micropayments?,Regulation,Latency,Lack of users,High margins and inefficiency,d

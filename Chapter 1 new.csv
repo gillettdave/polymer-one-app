@@ -1,0 +1,26 @@
+question,option_a,option_b,option_c,option_d,correct
+Ethereum is a Layer 1 network. What does Layer 1 mean in blockchain architecture? A Layer 1 is,Dependent on another blockchain,The base chain for transaction execution,A centralized system that stores data ,Sidechain that runs independantly to Eth,B
+What is Ethereum's role as an L1 blockchain?,It only stores NFTs,Decentralized base for smart contracts and rollups,Exclusive token trading system,Upgrade manager for L2s,B
+What is a Layer 2 network?,An Independent chain from Ethereum,A network built on Eth that enhances scalability,The settlement and security layer,A chain that manages Ethereum upgrades,B
+"In modular architecture, what role does Ethereum serve?",Data availability only,Settlement and security layer,Execution only,Consensus for other L1s,B
+Why are rollups central to Ethereums scaling strategy?,They centralize governance,They increase gas fees,Improve throughput while maintaining security,They replace L1 validators,C
+What are Ethereums core benefits as a blockchain?,"Fast, centralized and no smart contracts",Designed for private use only,Focused only on peer-to-peer payments,"Decentralization, security and supporting dApps",D
+What do many experts believe is the future of Ethereum?,Data storage only,Payments network only,To become an app-driven decentralized system,A home for only memes and NFTs,C
+What is the vision for the evolution of the dApp Ecosystem of Ethereum?,To be the settlement layer for rollups,To provide financial networks,To be a Bitcoin-like store of value,Centralized for better speed,A
+What name do we use to describe the framework of apps running on their own blockchains for performance and scale?,Superchain Model,Monolithic Chain Approach,Modular Blockchain Theory,App-Chain Thesis,D
+Are all Layer 2 Networks Rollups?,"Yes, there are only rollups","No, not all Layer 2 networks are rollups",Rollups are fake,None of the above,B
+What is an Ethereum Rollup?,A crypto wallet,Consensus mechanism,Interop Protocol,Layer 2 that batch-processes transactions,D
+Rollups help ethereum scale by:,"Bundling transactions, reducing cost and load",Increasing Block Size,Managing consensus mechanisms,Creating tokens to handle more transactions,A
+What is a primary benefit of using rollups in blockchain networks?,They increase transaction fees,The contribute to a centralized network,"They reduce congestion, cost and latency",The eliminate the need for consensus,C
+What are the two main types of rollups?,Proof of Work and Proof of Stake rollups,Sharding and Lightning rollups,Optimistic and Zero-Knowledge (ZK) rollups,Public and Private rollups,C
+What primary issue prompted the development of rollups for Ethereum?,Lack of smart contract functionality,High txn costs and network congestion,Insufficient security measures,Limited token standards,B
+How do rollups help alleviate Ethereum's network congestion?,By increasing block size,By reducing the number of nodes,By executing txns off-chain and posting on-chain,By eliminating gas fees,C
+What is the primary goal of Ethereum's Layer 2 scaling solutions?,To replace Ethereum's mainnet,To eliminate the need for smart contracts,To increase decentralization,To enhance scalability and reduce txn costs,D
+"In the context of rollups,  what is a ""sequencer""?",A smart contract that validates txns,A miner on the Ethereum mainnet,An entity for ordering and batching txns,A user initiating a txn,C
+Why might developers choose to build on Layer 2 solutions instead of directly on Ethereum's mainnet?,To avoid Ethereum's security protocols,To centralize their applications,To eliminate the need for smart contracts,To get higher throughput and lower txn costs,D
+How do rollups contribute to Ethereums goal of mass adoption?,By increasing scalability and reducing costs,By reducing the number of nodes,By increasing txn complexity,By limiting the number of users,A
+How do rollups fit into Ethereums long-term roadmap?,Provide a temporary solution until sharding,Being a fundamental part of Ethereums scaling,Eth Layer 1 improvements will replace rollups,Only used for specific apps and not scaling,B
+What is the main advantage for applications building their own rollup chains?,Customization and control of cost and revenue,Access to Ethereum's mainnet security,Simplified smart contract development,Enhanced interop with other blockchains,A
+What is the rollup thesis of Ethereum?,"Executions on rollups, settlement on Ethereum",Sharding will replace rollups,Rollups will be used for apps and not scaling,L1 scaling solutions will eliminate rollups,A
+How do rollups maintain security while executing txns off-chain?,By using their own consensus mechanisms,By relying solely on external validators,By not interacting with the Ethereum mainnet,By posting txn data back to the Eth mainnet,D
+The app-chain thesis of Ethereum states that in order to have scalable fast and robust apps that are attractive to Web2 users those apps need to:,Exist on the Ethereum L1 network,Move away from web3 tech,Pass along costs to their users,Exist across multiple layer2 rollups,D

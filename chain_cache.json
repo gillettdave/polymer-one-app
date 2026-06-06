@@ -1,0 +1,67 @@
+{
+  "60808": {
+    "name": "BOB",
+    "logo": "https://icons.llama.fi/bob.png",
+    "slug": "bob"
+  },
+  "223": {
+    "name": "B2",
+    "logo": "https://icons.llama.fi/b2.png",
+    "slug": "b2"
+  },
+  "1": {
+    "name": "Ethereum",
+    "logo": "https://icons.llama.fi/ethereum.png",
+    "slug": "ethereum"
+  },
+  "10": {
+    "name": "Optimism",
+    "logo": "https://icons.llama.fi/optimism.png",
+    "slug": "optimism"
+  },
+  "56": {
+    "name": "BSC",
+    "logo": "https://icons.llama.fi/bsc.png",
+    "slug": "bsc"
+  },
+  "137": {
+    "name": "Polygon",
+    "logo": "https://icons.llama.fi/polygon.png",
+    "slug": "polygon"
+  },
+  "250": {
+    "name": "Fantom",
+    "logo": "https://icons.llama.fi/fantom.png",
+    "slug": "fantom"
+  },
+  "42161": {
+    "name": "Arbitrum",
+    "logo": "https://icons.llama.fi/arbitrum.png",
+    "slug": "arbitrum"
+  },
+  "43114": {
+    "name": "Avalanche",
+    "logo": "https://icons.llama.fi/avalanche.png",
+    "slug": "avalanche"
+  },
+  "8453": {
+    "name": "Base",
+    "logo": "https://icons.llama.fi/base.png",
+    "slug": "base"
+  },
+  "59144": {
+    "name": "Linea",
+    "logo": "https://icons.llama.fi/linea.png",
+    "slug": "linea"
+  },
+  "534352": {
+    "name": "Scroll",
+    "logo": "https://icons.llama.fi/scroll.png",
+    "slug": "scroll"
+  },
+  "130": {
+    "name": "Unichain",
+    "logo": "https://icons.llama.fi/unichain.png",
+    "slug": "unichain"
+  }
+}

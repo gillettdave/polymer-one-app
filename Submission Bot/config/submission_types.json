@@ -1,0 +1,30 @@
+{
+  "ambassador_application": {
+    "label": "Ambassador Application",
+    "description": "Apply to become a community ambassador",
+    "default_approval_role_id": null,
+    "require_link": false,
+    "require_attachment": false,
+    "cooldown_override_seconds": null,
+    "reviewers_override_role_ids": null
+  },
+  "content_submission": {
+    "label": "Content Submission",
+    "description": "Submit content for review and publication",
+    "default_approval_role_id": null,
+    "require_link": true,
+    "require_attachment": false,
+    "cooldown_override_seconds": 600,
+    "reviewers_override_role_ids": null
+  },
+  "bug_report": {
+    "label": "Bug Report",
+    "description": "Report a bug or issue",
+    "require_link": false,
+    "require_attachment": false,
+    "cooldown_override_seconds": null,
+    "reviewers_override_role_ids": null
+  }
+}
+
+

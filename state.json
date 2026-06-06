@@ -1,0 +1,667 @@
+{
+    "last_top10_ids": [
+        "691490f60b265b2618dea120",
+        "68fb33638ac27854870877f9",
+        "68f6175b4abc09f60cdfd62c",
+        "0x7e08dd3866cc37570ab256b9470e884c78c99de18583bb12baede6dfe50981f4",
+        "0x3389ca5e95ff09796e9298653e33d632b0d89850f70da51fb87c4a20ff759565",
+        "0xc70df55f1780eaa2acde6e2d30f1eb8aea6e1eb9cd0b8b54a7dfcb48a708ef22",
+        "0xaf6e304f12ad8cb0e5c66825f59f0c1510edb226d55b292e5a0cd7a476cbb71a",
+        "0xe684ebf35b8be85ea19f5d89067b9dfe4cb8de64e9b46284ffe409ff57897921",
+        "0x34807ca0101c359e805ea20f3b1d78e48c0951455f2f423defaef0d592c38824",
+        "0x91f5992848745c3024e72dd494c19e059a53e916714fb6918d798e5a486ba9be"
+    ],
+    "announced_top10_ids": [
+        "68f6175b4abc09f60cdfd62c",
+        "691490f60b265b2618dea120",
+        "0x3389ca5e95ff09796e9298653e33d632b0d89850f70da51fb87c4a20ff759565",
+        "0xaf6e304f12ad8cb0e5c66825f59f0c1510edb226d55b292e5a0cd7a476cbb71a",
+        "0xf10fbd3c17ff786409c9fdd56583c274019ea8fe13b94b19b74b38b6c17fb341",
+        "68fb33638ac27854870877f9",
+        "0xe684ebf35b8be85ea19f5d89067b9dfe4cb8de64e9b46284ffe409ff57897921",
+        "0xb93b532ebb1c01009afbcd31553bbc92001f3ffcf791be5ba6797c66dd539658",
+        "0xc70df55f1780eaa2acde6e2d30f1eb8aea6e1eb9cd0b8b54a7dfcb48a708ef22",
+        "0xd5a9785498a233eec346ab3461107e07ca95f632844c41a3f93feb9196ed7760",
+        "0x7e08dd3866cc37570ab256b9470e884c78c99de18583bb12baede6dfe50981f4"
+    ],
+    "last_milestone": 1.5,
+    "initialized_milestone": true,
+    "initialized_leaderboard": true,
+    "volume_history": [
+        {
+            "ts": "2026-02-28T12:18:44.360053+00:00",
+            "total": 1522994485.5583968
+        },
+        {
+            "ts": "2026-02-28T13:18:44.373282+00:00",
+            "total": 1523032844.847029
+        },
+        {
+            "ts": "2026-02-28T14:18:44.288444+00:00",
+            "total": 1523095532.5520563
+        },
+        {
+            "ts": "2026-02-28T15:18:44.295172+00:00",
+            "total": 1523191115.1339214
+        },
+        {
+            "ts": "2026-02-28T16:18:44.301977+00:00",
+            "total": 1523285476.0699
+        },
+        {
+            "ts": "2026-02-28T17:18:44.272280+00:00",
+            "total": 1523360938.166942
+        },
+        {
+            "ts": "2026-02-28T18:18:44.350721+00:00",
+            "total": 1523477104.094842
+        },
+        {
+            "ts": "2026-02-28T19:18:44.241944+00:00",
+            "total": 1523621092.3450418
+        },
+        {
+            "ts": "2026-02-28T20:18:44.317982+00:00",
+            "total": 1523720741.5831747
+        },
+        {
+            "ts": "2026-02-28T21:18:44.222128+00:00",
+            "total": 1523804421.1753602
+        },
+        {
+            "ts": "2026-02-28T22:18:44.321148+00:00",
+            "total": 1523980536.7946792
+        },
+        {
+            "ts": "2026-02-28T23:18:44.342232+00:00",
+            "total": 1524049635.0416546
+        },
+        {
+            "ts": "2026-03-01T00:18:44.284468+00:00",
+            "total": 1524106870.1615853
+        },
+        {
+            "ts": "2026-03-01T01:18:44.282734+00:00",
+            "total": 1524399694.745519
+        },
+        {
+            "ts": "2026-03-01T02:18:45.436603+00:00",
+            "total": 1524472055.5442336
+        },
+        {
+            "ts": "2026-03-01T03:18:44.244956+00:00",
+            "total": 1524576665.583113
+        },
+        {
+            "ts": "2026-03-01T04:18:44.260441+00:00",
+            "total": 1524717776.4454544
+        },
+        {
+            "ts": "2026-03-01T05:18:44.257359+00:00",
+            "total": 1524954688.4621305
+        },
+        {
+            "ts": "2026-03-01T06:18:44.320272+00:00",
+            "total": 1525147608.6913934
+        },
+        {
+            "ts": "2026-03-01T07:18:44.462002+00:00",
+            "total": 1525673117.1018763
+        },
+        {
+            "ts": "2026-03-01T08:18:44.251042+00:00",
+            "total": 1525802126.047042
+        },
+        {
+            "ts": "2026-03-01T09:18:44.436705+00:00",
+            "total": 1526085618.7395937
+        },
+        {
+            "ts": "2026-03-01T10:18:44.398706+00:00",
+            "total": 1526236203.2292373
+        },
+        {
+            "ts": "2026-03-01T11:18:44.398178+00:00",
+            "total": 1526332681.7853472
+        },
+        {
+            "ts": "2026-03-01T12:18:44.222968+00:00",
+            "total": 1526677049.0963776
+        },
+        {
+            "ts": "2026-03-01T13:18:44.338730+00:00",
+            "total": 1526913481.3922534
+        },
+        {
+            "ts": "2026-03-01T14:18:44.270230+00:00",
+            "total": 1526957901.3298945
+        },
+        {
+            "ts": "2026-03-01T15:18:44.288437+00:00",
+            "total": 1527208931.4220908
+        },
+        {
+            "ts": "2026-03-01T16:18:44.279097+00:00",
+            "total": 1527264083.8255908
+        },
+        {
+            "ts": "2026-03-01T17:18:44.300639+00:00",
+            "total": 1527427269.7662868
+        },
+        {
+            "ts": "2026-03-01T18:18:44.435906+00:00",
+            "total": 1527461745.757913
+        },
+        {
+            "ts": "2026-03-01T19:18:44.300030+00:00",
+            "total": 1527500722.7723804
+        },
+        {
+            "ts": "2026-03-01T20:18:44.362566+00:00",
+            "total": 1527626372.4570606
+        },
+        {
+            "ts": "2026-03-01T21:18:44.388863+00:00",
+            "total": 1528372767.0763135
+        },
+        {
+            "ts": "2026-03-01T22:18:44.309507+00:00",
+            "total": 1528592182.86737
+        },
+        {
+            "ts": "2026-03-01T23:18:44.396202+00:00",
+            "total": 1528761612.7571583
+        },
+        {
+            "ts": "2026-03-02T00:18:44.361647+00:00",
+            "total": 1528812846.0038528
+        },
+        {
+            "ts": "2026-03-02T01:18:44.340914+00:00",
+            "total": 1528931274.7100558
+        },
+        {
+            "ts": "2026-03-02T02:18:44.295580+00:00",
+            "total": 1529148931.4105518
+        },
+        {
+            "ts": "2026-03-02T03:18:45.265956+00:00",
+            "total": 1529401468.5575135
+        },
+        {
+            "ts": "2026-03-02T04:18:44.228500+00:00",
+            "total": 1529493047.0870605
+        },
+        {
+            "ts": "2026-03-02T05:18:44.334557+00:00",
+            "total": 1529534433.6916387
+        },
+        {
+            "ts": "2026-03-02T06:18:44.328878+00:00",
+            "total": 1529567313.8731008
+        },
+        {
+            "ts": "2026-03-02T07:18:44.249595+00:00",
+            "total": 1529654128.1367426
+        },
+        {
+            "ts": "2026-03-02T08:18:44.353415+00:00",
+            "total": 1529797513.9998937
+        },
+        {
+            "ts": "2026-03-02T09:18:44.292333+00:00",
+            "total": 1529989099.7098024
+        },
+        {
+            "ts": "2026-03-02T10:18:44.438109+00:00",
+            "total": 1530244086.6382446
+        },
+        {
+            "ts": "2026-03-02T11:18:44.272660+00:00",
+            "total": 1530386319.2410293
+        },
+        {
+            "ts": "2026-03-02T12:18:44.259498+00:00",
+            "total": 1530563731.9283016
+        }
+    ],
+    "previous_top10_tokens": [],
+    "components_enabled": {
+        "leaderboard_checking": true,
+        "volume_checking": true,
+        "daily_summary": true,
+        "prediction_resolution": false,
+        "metrics_quiz": true,
+        "thread_cleanup": true
+    },
+    "metrics_quiz_message_id": 1477817491097915613,
+    "metrics_quiz_channel_id": 1445474822422266028,
+    "metrics_quiz_all_message_ids": [
+        1477817491097915613,
+        1477817492066926814,
+        1477817492846936097,
+        1477817493216034897
+    ],
+    "daily_leaderboard_message_id": 1477817475381985280,
+    "main_metrics_channel_id": 1445474566720847943,
+    "volume_channel_id": null,
+    "leaderboard_channel_id": null,
+    "admin_role_name": null,
+    "tweet_xp_daily_limit": 5,
+    "min_discord_posts": 4,
+    "excluded_channel_ids": [
+        933812975297527818
+    ],
+    "quiz_min_discord_posts": 4,
+    "transaction_count_history": [],
+    "biggest_transaction_history": [
+        {
+            "ts": "2026-02-28T12:18:44.360053+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T13:18:44.373282+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T14:18:44.288444+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T15:18:44.295172+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T16:18:44.301977+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T17:18:44.272280+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T18:18:44.350721+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T19:18:44.241944+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T20:18:44.317982+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T21:18:44.222128+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T22:18:44.321148+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T23:18:44.342232+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-02-28T23:59:01.997751+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T00:18:44.284468+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T01:18:44.282734+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T02:18:45.436603+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T03:18:44.244956+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T04:18:44.260441+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T05:18:44.257359+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T06:18:44.320272+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T07:18:44.462002+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T08:18:44.251042+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T09:18:44.435670+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T10:18:44.397702+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T11:18:44.398178+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T12:18:44.222968+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T13:18:44.338730+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T14:18:44.270230+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T15:18:44.288437+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T16:18:44.277595+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T17:18:44.300639+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T18:18:44.434599+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T19:18:44.300030+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T20:18:44.361363+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T21:18:44.388863+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T22:18:44.309507+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T23:18:44.396202+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-01T23:59:02.539198+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T00:18:44.359733+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T01:18:44.340914+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T02:18:44.295580+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T03:18:45.265956+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T04:18:44.228500+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T05:18:44.334557+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T06:18:44.328878+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T07:18:44.249595+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T08:18:44.353415+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T09:18:44.292333+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T10:18:44.438109+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T11:18:44.272660+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        },
+        {
+            "ts": "2026-03-02T12:18:44.259498+00:00",
+            "amount": 57686384.49,
+            "token_symbol": "uBTC",
+            "application": "Lucid",
+            "source_chain": "60808",
+            "destination_chain": "223"
+        }
+    ]
+}

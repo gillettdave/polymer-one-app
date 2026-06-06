@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  polyone-bot:
+    build: .
+    container_name: polyone-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+      # Mount state file for persistence
+      - ./state.json:/app/state.json
+      # Mount CSV files for updates
+      - ./twitter_handles.csv:/app/twitter_handles.csv
+      - ./metrics_quiz_custom.csv:/app/metrics_quiz_custom.csv
+      # Mount service account JSON (if needed)
+      - ./service_account.json:/app/service_account.json
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os; exit(0 if os.path.exists('/app/logs/polyone.log') else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+
+
+
+
+
+
+
+

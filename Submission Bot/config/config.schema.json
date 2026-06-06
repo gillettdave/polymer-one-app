@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Submission Types Configuration Schema",
+  "type": "object",
+  "patternProperties": {
+    "^[a-z0-9_]+$": {
+      "type": "object",
+      "required": ["label", "description", "require_link", "require_attachment"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Human-readable name for this submission type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short help text shown to users"
+        },
+        "default_approval_role_id": {
+          "type": ["integer", "null"],
+          "description": "Optional Discord role ID to assign when approved"
+        },
+        "require_link": {
+          "type": "boolean",
+          "description": "Whether a link is required for this submission type"
+        },
+        "require_attachment": {
+          "type": "boolean",
+          "description": "Whether an attachment is required for this submission type"
+        },
+        "cooldown_override_seconds": {
+          "type": ["integer", "null"],
+          "description": "Optional cooldown override (in seconds) for this submission type"
+        },
+        "reviewers_override_role_ids": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "integer"
+          },
+          "description": "Optional list of role IDs that can review this type (overrides global reviewers)"
+        }
+      }
+    }
+  }
+}
+
+

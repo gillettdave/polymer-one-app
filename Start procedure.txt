@@ -1,0 +1,5 @@
+Start procedure:
+
+C:\Users\cynnb\AppData\Local\Programs\Python\Python311\Scripts\pip.exe install -r requirements.txt
+
+C:\Users\cynnb\AppData\Local\Programs\Python\Python311\python.exe polyone.py
